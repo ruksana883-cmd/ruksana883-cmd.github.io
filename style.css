@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.project {
+  margin-bottom: 30px;
+}
+
+.project img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+.project a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: white;
+  background: #007bff;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
