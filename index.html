@@ -18,8 +18,23 @@ nav div{max-width:1140px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padd
 nav a{padding:7px 14px;border-radius:99px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14.5px}
 nav a:hover{background:var(--soft);color:var(--ac)}
 .page{max-width:1140px;margin:0 auto;padding:26px 18px 40px;display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start}
+.cover{position:relative;min-height:220px;margin:0 0 24px;border-radius:22px;overflow:hidden;background:linear-gradient(115deg,#142B35,#176B67);display:flex;align-items:flex-end;padding:26px;color:#fff;background-size:cover;background-position:center}
+.cover:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,24,31,.82),rgba(7,24,31,.22))}
+.cover-content{position:relative;z-index:1;max-width:700px}
+.cover h2{font-size:clamp(28px,4vw,42px);line-height:1.1;margin-bottom:8px}
+.cover p{margin:0;color:#eef7f5;font-size:16px}
+.cover-upload{position:absolute;z-index:2;right:16px;top:16px;padding:9px 13px;border:1px dashed rgba(255,255,255,.8);border-radius:10px;color:#fff;background:rgba(10,35,40,.5);text-decoration:none;font-size:12px;font-weight:700}
+.cover-upload:hover{background:rgba(10,35,40,.8)}
+.shot .banner-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shot .pl{z-index:2}
+.media-gallery{display:flex;gap:8px;overflow-x:auto;padding:9px 12px 0}
+.media-thumb{flex:0 0 94px;width:94px;height:68px;padding:0;border:0;border-radius:9px;overflow:hidden;background:#e8f3f0;cursor:pointer}
+.media-thumb img,.media-thumb video{display:block;width:100%;height:100%;object-fit:cover}
+.media-thumb:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+@media(max-width:520px){.ph{width:190px;height:190px}.cover{min-height:190px;padding:20px}.cover-upload{position:relative;right:auto;top:auto;margin:0 0 12px auto}.cover{display:block}.cover-content{margin-top:35px}}
+
 aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
-.ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
+.ph{width:220px;height:220px;margin:0 auto 18px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
 .ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
 .ph b{display:block;font-size:46px;color:#fff}.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.profile-upload{display:inline-flex;margin:0 auto 16px;padding:8px 13px;border:1px dashed #9ccbc2;border-radius:10px;color:#d9f2ec;text-decoration:none;font-size:12px;font-weight:700}.profile-upload:hover{background:#ffffff16}
 aside h1{font-size:28px}
@@ -119,6 +134,10 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 </aside>
 
 <main>
+<div class="cover" id="coverFrame">
+  <a class="cover-upload" id="coverUpload" href="https://github.com/ruksana883-cmd/ruksana883-cmd.github.io/upload/main/media/cover" target="_blank" rel="noopener">＋ Upload cover photo</a>
+  <div class="cover-content"><h2>Engineering ideas into impact</h2><p>AI researcher · Hardware innovator · Educator</p></div>
+</div>
 <div class="hl" id="hl"></div>
 
 <section id="about">
@@ -130,7 +149,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 
 <section id="projects">
 <h2 class="t">Projects and products</h2>
-<p class="intro">Tap the play button on any card to open its video. Videos and photos are placeholders until you add yours.</p>
+<p class="intro">Upload photos or videos to each project folder. Your first upload becomes the banner; click any preview to open it.</p>
 <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
 <div class="grid" id="pgrid"></div>
 </section>
@@ -247,8 +266,10 @@ function mediaUploadLink(i){
   var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
   return REPO_UPLOAD+'media/'+slug;
 }
+var PROJECT_MEDIA_FILES={};
 async function listMediaFiles(folder){
-  // List every file in the matching GitHub folder; filenames do not matter.
+  // GitHub's public Contents API lists all filenames in a folder, so users can
+  // upload files with any name. Files must be committed to the main branch.
   var api='https://api.github.com/repos/ruksana883-cmd/ruksana883-cmd.github.io/contents/'+folder+'?ref=main';
   try{
     var response=await fetch(api,{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});
@@ -258,29 +279,39 @@ async function listMediaFiles(folder){
     return items.filter(function(item){
       return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v)$/i.test(item.name);
     }).sort(function(a,b){
-      // Prefer images first; then sort by filename for a predictable gallery.
       var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
       var bi=/\.(png|jpe?g|gif|webp|avif)$/i.test(b.name)?0:1;
       return ai-bi || a.name.localeCompare(b.name);
     });
-  }catch(e){return [];}
+  }catch(e){console.warn('Could not list '+folder,e);return [];}
 }
-function mediaMarkup(item){
-  var url=item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
-  var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  if(/\.(mp4|webm|mov|m4v)$/i.test(item.name)){
-    return '<video controls playsinline preload="metadata" src="'+safeUrl+'"></video>';
-  }
-  return '<img loading="lazy" src="'+safeUrl+'" alt="Uploaded portfolio media">';
+function mediaUrl(item){
+  return item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
+}
+function isVideoFile(item){return /\.(mp4|webm|mov|m4v)$/i.test(item.name);}
+function thumbMarkup(item,projectIndex,fileIndex){
+  var url=mediaUrl(item).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  var inside=isVideoFile(item)
+    ? '<video muted playsinline preload="metadata" src="'+url+'"></video>'
+    : '<img loading="lazy" src="'+url+'" alt="Uploaded project preview">';
+  return '<button class="media-thumb" type="button" data-media-open="'+projectIndex+'" data-media-file="'+fileIndex+'" aria-label="Open uploaded media">'+inside+'</button>';
 }
 async function mountProfilePhoto(){
   var files=await listMediaFiles('media/profile');
-  var photo=files.find(function(item){return /\.(png|jpe?g|gif|webp|avif)$/i.test(item.name);});
+  var photo=files.find(function(item){return !isVideoFile(item);});
   if(photo){
     var frame=document.getElementById('profileFrame');
-    frame.innerHTML=mediaMarkup(photo);
-    var upload=document.getElementById('profileUpload');
-    if(upload)upload.remove();
+    frame.innerHTML='<img src="'+mediaUrl(photo)+'" alt="Shiek Ruksana profile photograph">';
+    var upload=document.getElementById('profileUpload');if(upload)upload.remove();
+  }
+}
+async function mountCoverPhoto(){
+  var files=await listMediaFiles('media/cover');
+  var photo=files.find(function(item){return !isVideoFile(item);});
+  if(photo){
+    var frame=document.getElementById('coverFrame');
+    frame.style.backgroundImage='linear-gradient(90deg,rgba(7,24,31,.72),rgba(7,24,31,.16)),url("'+mediaUrl(photo)+'")';
+    var upload=document.getElementById('coverUpload');if(upload)upload.remove();
   }
 }
 async function mountProjectMedia(){
@@ -288,30 +319,59 @@ async function mountProjectMedia(){
   for(var card of cards){
     var i=Number(card.getAttribute('data-project-media'));
     var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
-    var gallery=card.querySelector('.media-gallery');
     var files=await listMediaFiles('media/'+slug);
+    PROJECT_MEDIA_FILES[i]=files;
     if(files.length){
-      gallery.innerHTML=files.map(mediaMarkup).join('');
+      var main=files[0],shot=card.querySelector('.shot');
+      var url=mediaUrl(main).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+      var visual=isVideoFile(main)
+        ? '<video class="banner-media" muted playsinline preload="metadata" src="'+url+'"></video>'
+        : '<img class="banner-media" src="'+url+'" alt="'+P[i][1]+' project">';
+      shot.innerHTML=visual+'<span class="pl">'+PLAY+'</span>';
+      shot.setAttribute('aria-label','Open uploaded media for '+P[i][1]);
+      var gallery=card.querySelector('.media-gallery');
+      var extras=files.slice(1);
+      gallery.innerHTML=extras.map(function(item,j){return thumbMarkup(item,i,j+1)}).join('');
+      if(!extras.length)gallery.remove();
       var upload=card.querySelector('.media-upload');if(upload)upload.remove();
     }
   }
 }
+function openProjectMedia(i,j){
+  var p=P[i],files=PROJECT_MEDIA_FILES[i]||[],item=files[j||0];
+  document.getElementById('vt').textContent=p[1];
+  if(item){
+    var u=mediaUrl(item);
+    vb.innerHTML=isVideoFile(item)
+      ? '<video controls autoplay playsinline src="'+u+'"></video>'
+      : '<img src="'+u+'" alt="'+p[1]+'" style="width:100%;height:100%;object-fit:contain">';
+  }else{
+    var src=VIDEOS[p[1]];
+    vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Media coming soon. Upload photos or videos using this project card.</div>';
+  }
+  document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
+  vd.showModal();
+}
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Opens secure GitHub upload · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Any filename · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
 mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
-function openV(i){var p=P[i],src=VIDEOS[p[1]];document.getElementById('vt').textContent=p[1];
-vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Video coming soon.<br>Watch the demo using the link below.</div>';
-document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
-vd.showModal()}
+function openV(i){openProjectMedia(i,0)}
 function closeV(){vb.innerHTML='';vd.close()}
-document.addEventListener('click',function(e){var c=e.target.closest('[data-c]'),v=e.target.closest('[data-v]');if(c){cur=c.getAttribute('data-c');draw()}else if(v){openV(+v.getAttribute('data-v'))}else if(e.target===vd){closeV()}});
+document.addEventListener('click',function(e){
+  var c=e.target.closest('[data-c]'),m=e.target.closest('[data-media-open]'),v=e.target.closest('[data-v]');
+  if(c){cur=c.getAttribute('data-c');draw()}
+  else if(m){openProjectMedia(+m.getAttribute('data-media-open'),+m.getAttribute('data-media-file'))}
+  else if(v){openV(+v.getAttribute('data-v'))}
+  else if(e.target===vd){closeV()}
+});
 document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
 draw();
 mountProfilePhoto();
+mountCoverPhoto();
 </script>
 </body>
 </html>
