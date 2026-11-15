@@ -18,59 +18,24 @@ nav div{max-width:1140px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padd
 nav a{padding:7px 14px;border-radius:99px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14.5px}
 nav a:hover{background:var(--soft);color:var(--ac)}
 .page{max-width:1140px;margin:0 auto;padding:26px 18px 40px;display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start}
-.cover{position:relative;min-height:220px;margin:0 0 24px;border-radius:22px;overflow:hidden;background:linear-gradient(115deg,#142B35,#176B67);display:flex;align-items:flex-end;padding:26px;color:#fff;background-size:cover;background-position:center}
-.cover:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,24,31,.82),rgba(7,24,31,.22))}
-.cover-content{position:relative;z-index:1;max-width:700px}
-.cover h2{font-size:clamp(28px,4vw,42px);line-height:1.1;margin-bottom:8px}
-.cover p{margin:0;color:#eef7f5;font-size:16px}
-.cover-upload{position:absolute;z-index:2;right:16px;top:16px;padding:9px 13px;border:1px dashed rgba(255,255,255,.8);border-radius:10px;color:#fff;background:rgba(10,35,40,.5);text-decoration:none;font-size:12px;font-weight:700}
-.cover-upload:hover{background:rgba(10,35,40,.8)}
-.shot .banner-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.shot .pl{z-index:2}
-.media-gallery{display:flex;gap:8px;overflow-x:auto;padding:9px 12px 0}
-.media-thumb{flex:0 0 94px;width:94px;height:68px;padding:0;border:0;border-radius:9px;overflow:hidden;background:#e8f3f0;cursor:pointer}
-.media-thumb img,.media-thumb video{display:block;width:100%;height:100%;object-fit:cover}
-.media-thumb:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
-.wie-preview{display:grid;grid-template-columns:minmax(220px, .9fr) 1.1fr;gap:0;margin:18px 0 22px;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;text-decoration:none;color:var(--ink);box-shadow:0 8px 24px rgba(20,43,53,.08);transition:transform .2s,box-shadow .2s}
-.wie-preview:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,43,53,.14)}
-.wie-preview-art{min-height:220px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.22),transparent 32%),linear-gradient(135deg,#152c50,#6b2d78 58%,#176b67)}
-.wie-preview-brand{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-.wie-preview-art strong{font-size:clamp(24px,3vw,34px);line-height:1.08;max-width:360px}
-.wie-preview-art small{font-size:12px;opacity:.85}
-.wie-preview-copy{padding:24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
-.wie-preview-copy .eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
-.wie-preview-copy h3{font-size:clamp(20px,2.4vw,27px);line-height:1.2}
-.wie-preview-copy p{margin:0;color:var(--muted);font-size:14.5px}
-.wie-preview-cta{display:inline-flex;align-items:center;gap:8px;margin-top:5px;font-weight:800;color:var(--ac)}
-
-
-.admission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
-.admission-card{display:flex;align-items:center;gap:15px;width:100%;min-width:0;text-align:left;padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:0 5px 18px rgba(20,43,53,.05);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink)}
-.admission-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,43,53,.1);border-color:var(--ac)}
-.admission-logo{width:52px;height:52px;flex:0 0 52px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:#fff;overflow:hidden}
-.admission-logo img{width:34px;height:34px;object-fit:contain}
-.admission-info{min-width:0;flex:1}
-.admission-info strong{display:block;font-size:15px;line-height:1.3}
-.admission-info span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
-.admission-chip{font-size:10px;font-weight:800;letter-spacing:.04em;color:var(--ac);background:var(--soft);border-radius:999px;padding:7px 10px;white-space:nowrap}
-#admissionDialog{width:min(620px,calc(100% - 28px));max-height:88vh;overflow:auto;border:0;border-radius:22px;padding:0;box-shadow:0 25px 80px rgba(5,25,35,.28);color:var(--ink)}
-#admissionDialog::backdrop{background:rgba(9,24,34,.62);backdrop-filter:blur(4px)}
-.adm-modal-head{display:flex;align-items:center;gap:16px;padding:24px;background:linear-gradient(135deg,#eaf3f1,#f7f9fb);border-bottom:1px solid var(--line)}
-.adm-modal-head .admission-logo{width:62px;height:62px;flex-basis:62px}
-.adm-modal-head h3{font-size:22px;line-height:1.2}
-.adm-modal-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.adm-close{margin-left:auto;align-self:flex-start;border:0;border-radius:50%;width:34px;height:34px;background:#fff;font-size:22px;cursor:pointer;color:var(--ink)}
-.adm-modal-body{padding:22px 24px 24px}
-.adm-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 18px}
-.adm-stat{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
-.adm-stat small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.adm-stat strong{display:block;font-size:19px;margin-top:5px;color:var(--ac)}
-.adm-note{font-size:13px;line-height:1.65;color:var(--muted);margin:12px 0}
-.adm-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.adm-links a{display:inline-flex;padding:10px 14px;border-radius:999px;background:var(--dark);color:white;text-decoration:none;font-size:12px;font-weight:700}
-.adm-source{font-size:11px;color:var(--muted);margin-top:14px}
-@media(max-width:680px){.admission-grid{grid-template-columns:1fr}.admission-card{padding:14px}.adm-highlights{grid-template-columns:1fr 1fr}}
-
+aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
+.ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
+.ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
+.ph b{display:block;font-size:46px;color:#fff}.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.profile-upload{display:inline-flex;margin:0 auto 16px;padding:8px 13px;border:1px dashed #9ccbc2;border-radius:10px;color:#d9f2ec;text-decoration:none;font-size:12px;font-weight:700}.profile-upload:hover{background:#ffffff16}
+aside h1{font-size:28px}
+aside .role{color:#c8cdda;margin:8px 0 18px;font-size:15px}
+.cl{display:grid;gap:8px;text-align:left}
+.cl a{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;background:#222735;color:#fff;text-decoration:none;font-weight:600;font-size:15px}
+.cl a:hover{background:#2f3547}
+.cl a.p{background:var(--ac)}
+.cl .bd{min-width:30px;height:30px;border-radius:8px;font-size:10px;padding:0 5px}
+.cl .bd svg{width:20px}
+.bd{display:inline-grid;place-items:center;flex:none;min-width:46px;height:46px;padding:0 8px;border-radius:12px;font:800 11.5px "Plus Jakarta Sans",sans-serif;color:#fff;letter-spacing:.01em;white-space:nowrap}
+.bd svg{width:30px;height:auto;fill:#fff}
+.bd.w{background:#fff!important;border:1px solid var(--line)}
+.hl{background:var(--ac);color:#fff;border-radius:16px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px 24px;font-weight:700;font-size:15px}
+.hl span{display:flex;gap:10px;align-items:center}
+.hl .bd{min-width:36px;height:36px;border-radius:9px;font-size:10px;border:2px solid #fff}
 .press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:26px auto 0;max-width:1120px;align-items:stretch}
 .press-tile{position:relative;display:flex;flex-direction:column;min-width:0;min-height:390px;overflow:hidden;padding:0;border:1px solid #dce5e4;border-radius:18px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 7px 22px rgba(20,43,53,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:pressRise .5s both;animation-delay:calc(var(--tile-index,0)*20ms)}
 .press-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,43,53,.12);border-color:var(--ac)}
@@ -83,8 +48,7 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .press-brand.special-ieee strong{font-size:27px;line-height:1;font-style:italic}
 .press-brand.special-ieee small{font-size:10px;letter-spacing:.2em;font-weight:800;color:#236c91}
 .press-brand .brand-logo{width:34px;height:34px;object-fit:contain;border-radius:8px}
-.press-brand.special-mit .mit-logo{width:170px;height:82px;max-width:82%;object-fit:contain;border-radius:0;margin-bottom:4px}
-.press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:2;background:#e8f0ef}
+.press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .press-body{padding:17px 18px 16px;display:flex;flex:1;min-height:220px;flex-direction:column}
 .press-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .press-number{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
@@ -117,40 +81,7 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 @keyframes pressRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.press-tile{animation:none;transition:none}}
 @media(max-width:520px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.press-tile{padding:13px;border-radius:14px}.press-tile h3{font-size:14px}.press-tile p{font-size:11px}.press-mark{width:30px;height:30px}}
-@media(max-width:640px){.wie-preview{grid-template-columns:1fr}.wie-preview-art{min-height:180px}}
-
-@media(max-width:520px){.ph{width:190px;height:190px}.cover{min-height:190px;padding:20px}.cover-upload{position:relative;right:auto;top:auto;margin:0 0 12px auto}.cover{display:block}.cover-content{margin-top:35px}}
-
-aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
-.ph{width:220px;height:220px;margin:0 auto 18px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
-.ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
-.ph b{display:block;font-size:46px;color:#fff}.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.profile-upload{display:inline-flex;margin:0 auto 16px;padding:8px 13px;border:1px dashed #9ccbc2;border-radius:10px;color:#d9f2ec;text-decoration:none;font-size:12px;font-weight:700}.profile-upload:hover{background:#ffffff16}
-aside h1{font-size:28px}
-aside .role{color:#c8cdda;margin:8px 0 18px;font-size:15px}
-.cl{display:grid;gap:8px;text-align:left}
-.cl a{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;background:#222735;color:#fff;text-decoration:none;font-weight:600;font-size:15px}
-.cl a:hover{background:#2f3547}
-.cl a.p{background:var(--ac)}
-.cl .bd{min-width:30px;height:30px;border-radius:8px;font-size:10px;padding:0 5px}
-.cl .bd svg{width:20px}
-.bd{display:inline-grid;place-items:center;flex:none;min-width:46px;height:46px;padding:0 8px;border-radius:12px;font:800 11.5px "Plus Jakarta Sans",sans-serif;color:#fff;letter-spacing:.01em;white-space:nowrap}
-.bd svg{width:30px;height:auto;fill:#fff}
-.bd.w{background:#fff!important;border:1px solid var(--line)}
-.hl{background:var(--ac);color:#fff;border-radius:16px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px 24px;font-weight:700;font-size:15px}
-.hl span{display:flex;gap:10px;align-items:center}
-.hl .bd{min-width:36px;height:36px;border-radius:9px;font-size:10px;border:2px solid #fff}
-
-/* Recovered signature highlights — isolated styles; do not alter other sections */
-#hl.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;
-  padding:0;margin:0 0 24px;background:transparent;color:var(--ink);align-items:stretch}
-#hl.hl .highlight-card{display:flex;align-items:center;gap:11px;min-height:82px;padding:13px;
-  border:1px solid var(--line);border-radius:15px;background:var(--panel);
-  box-shadow:0 4px 14px rgba(20,43,53,.05);font-size:12px;font-weight:700;line-height:1.35}
-#hl.hl .highlight-logo{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;
-  border-radius:10px;background:#fff;border:1px solid var(--line);overflow:hidden}
-#hl.hl .highlight-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
-#hl.hl .highlight-logo b{font-size:10px;color:var(--ac)}
-#hl.hl .highlight-card small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:3px}
+@media(max-width:640px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.press-thumb{height:125px;flex-basis:125px}.press-body{padding:13px}.press-tile h3{font-size:14px}}
 
 section{padding:34px 0 8px}
 h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
@@ -220,80 +151,33 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 @media (max-width:520px){ul.rows li{flex-wrap:wrap}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
-/* Press section: clean editorial layout */
-.press-grid{
-  display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:22px!important;
-  max-width:1080px!important;
-  margin:26px auto 0!important;
-  align-items:stretch!important;
-}
-.press-tile{
-  min-width:0!important;
-  min-height:310px!important;
-  height:auto!important;
-  aspect-ratio:auto!important;
-  padding:0!important;
-  display:flex!important;
-  flex-direction:column!important;
-  overflow:hidden!important;
-  border:1px solid #dce5e3!important;
-  border-radius:16px!important;
-  background:#fff!important;
-  color:var(--ink)!important;
-  text-decoration:none!important;
-  box-shadow:0 5px 18px rgba(20,43,53,.055)!important;
-  transition:transform .22s ease,box-shadow .22s ease!important;
-}
-.press-tile:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,43,53,.11)!important}
-.press-thumb{
-  position:relative!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  flex:0 0 126px!important;
-  height:126px!important;
-  min-height:126px!important;
-  overflow:hidden!important;
-  background:linear-gradient(135deg,#edf3f2,#dce8e6)!important;
-  border:0!important;
-}
-.press-brand{
-  width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:8px;
-  padding:12px;text-align:center;color:#426b67;
-  font-size:17px;font-weight:800;letter-spacing:.04em;
-}
-.press-brand .brand-logo{width:38px;height:38px;object-fit:contain;border-radius:8px}
-.press-thumb img.article-image{
-  display:none!important;position:absolute!important;inset:0!important;
-  width:100%!important;height:100%!important;object-fit:cover!important;
-}
-.press-thumb img.article-image.loaded{display:block!important}
-.press-body{
-  display:flex!important;flex:1 1 auto!important;flex-direction:column!important;
-  min-height:184px!important;height:auto!important;overflow:visible!important;
-  padding:15px 16px 14px!important;gap:0!important;
-}
-.press-meta{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin:0 0 11px!important}
-.press-number{font-size:9px!important;font-weight:800!important;letter-spacing:.12em!important;color:#708783!important}
-.press-mark{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:30px!important;height:25px!important;padding:0 8px!important;border-radius:7px!important;background:#eef4f2!important;color:#426b67!important;font-size:9px!important;font-weight:800!important}
-.press-type{font-size:9px!important;line-height:1.4!important;letter-spacing:.07em!important;font-weight:800!important;text-transform:uppercase!important;color:#64817d!important;margin:0 0 7px!important}
-.press-tile h3{font-size:17px!important;line-height:1.28!important;font-weight:750!important;margin:0 0 7px!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
-.press-tile p{font-size:12px!important;line-height:1.45!important;color:#64716f!important;margin:0!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
-.press-bottom{display:flex!important;align-items:center!important;justify-content:flex-start!important;min-height:18px!important;margin-top:auto!important;padding-top:13px!important;font-size:10px!important;font-weight:750!important;color:#176b67!important}
-.press-bottom span:last-child{display:none!important}
-.press-tile.no-link{cursor:default!important}
-.press-tile.no-link:hover{transform:none!important;box-shadow:0 5px 18px rgba(20,43,53,.055)!important}
-@media(max-width:760px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}}
-@media(max-width:520px){
- .press-grid{grid-template-columns:1fr!important;gap:13px!important}
- .press-tile{min-height:290px!important}
- .press-thumb{flex-basis:118px!important;height:118px!important;min-height:118px!important}
- .press-body{min-height:172px!important;padding:13px 14px!important}
- .press-tile h3{font-size:16px!important}
-}
+/* Separate Master’s Admissions section and offer popups */
+.admission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.admission-card{display:flex;align-items:center;gap:15px;width:100%;min-width:0;text-align:left;padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:0 5px 18px rgba(20,43,53,.05);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink)}
+.admission-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,43,53,.1);border-color:var(--ac)}
+.admission-logo{width:52px;height:52px;flex:0 0 52px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:#fff;overflow:hidden}
+.admission-logo img{width:34px;height:34px;object-fit:contain}
+.admission-info{min-width:0;flex:1}
+.admission-info strong{display:block;font-size:15px;line-height:1.3}
+.admission-info span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.admission-chip{font-size:10px;font-weight:800;letter-spacing:.04em;color:var(--ac);background:var(--soft);border-radius:999px;padding:7px 10px;white-space:nowrap}
+#admissionDialog{width:min(620px,calc(100% - 28px));max-height:88vh;overflow:auto;border:0;border-radius:22px;padding:0;box-shadow:0 25px 80px rgba(5,25,35,.28);color:var(--ink)}
+#admissionDialog::backdrop{background:rgba(9,24,34,.62);backdrop-filter:blur(4px)}
+.adm-modal-head{display:flex;align-items:center;gap:16px;padding:24px;background:linear-gradient(135deg,#eaf3f1,#f7f9fb);border-bottom:1px solid var(--line)}
+.adm-modal-head .admission-logo{width:62px;height:62px;flex-basis:62px}
+.adm-modal-head h3{font-size:22px;line-height:1.2}
+.adm-modal-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.adm-close{margin-left:auto;align-self:flex-start;border:0;border-radius:50%;width:34px;height:34px;background:#fff;font-size:22px;cursor:pointer;color:var(--ink)}
+.adm-modal-body{padding:22px 24px 24px}
+.adm-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.adm-stat{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.adm-stat small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.adm-stat strong{display:block;font-size:19px;margin-top:5px;color:var(--ac)}
+.adm-note{font-size:13px;line-height:1.65;color:var(--muted);margin:12px 0}
+.adm-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.adm-links a{display:inline-flex;padding:10px 14px;border-radius:999px;background:var(--dark);color:white;text-decoration:none;font-size:12px;font-weight:700}
+.adm-source{font-size:11px;color:var(--muted);margin-top:14px}
+@media(max-width:680px){.admission-grid{grid-template-columns:1fr}.admission-card{padding:14px}.adm-highlights{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -310,10 +194,6 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 </aside>
 
 <main>
-<div class="cover" id="coverFrame">
-  <a class="cover-upload" id="coverUpload" href="https://github.com/ruksana883-cmd/ruksana883-cmd.github.io/upload/main/media/cover" target="_blank" rel="noopener">＋ Upload cover photo</a>
-  <div class="cover-content"><h2>Engineering ideas into impact</h2><p>AI researcher · Hardware innovator · Educator</p></div>
-</div>
 <div class="hl" id="hl"></div>
 
 <section id="about">
@@ -325,7 +205,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 
 <section id="projects">
 <h2 class="t">Projects and products</h2>
-<p class="intro">Upload photos or videos to each project folder. Your first upload becomes the banner; click any preview to open it.</p>
+<p class="intro">Tap the play button on any card to open its video. Videos and photos are placeholders until you add yours.</p>
 <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
 <div class="grid" id="pgrid"></div>
 </section>
@@ -341,7 +221,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 
 <section id="admissions">
 <h2 class="t">Master’s Admissions &amp; Scholarships</h2>
-<p class="intro">A record of graduate admission offers and merit awards. Select a university to view its offer highlights, scholarship information and QS World University Ranking.</p>
+<p class="intro">A separate record of graduate admission offers and merit awards. Select a university to view its offer highlights, scholarship information and QS World University Ranking.</p>
 <div class="admission-grid" id="admissionGrid"></div>
 </section>
 
@@ -349,7 +229,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 <h2 class="t">Awards, records and honours</h2>
 <div class="two">
 <div><h3 class="k">Awards</h3><ul class="rows" id="awardsL"></ul></div>
-<div><h3 class="k">Records</h3><ul class="rows" id="recordsL"></ul></div>
+<div><h3 class="k">Records</h3><ul class="rows" id="recordsL"></ul><h3 class="k" style="margin-top:22px">Admission offers</h3><ul class="rows" id="offersL"></ul></div>
 </div>
 </section>
 
@@ -456,8 +336,31 @@ var PRESS=[
 ["Samagra Samachar Zindagi","Nizamabad edition · Page 2","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","SSZ"],
 ["Lokam Teeru","Nizamabad edition · Page 2","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","LT"]
 ];
-function row(a){var u=a[3];return '<li'+(a[4]===1?' class="star"':'')+'>'+bd(a[0])+'<span class="tx"><b>'+a[1]+'</b><small>'+a[2]+'</small></span><a class="go" href="'+(u||CV)+'">'+(u?'Open':'In CV')+'</a></li>'}
+function row(a){var u=a[3]||LI;return '<li'+(a[4]===1?' class="star"':'')+'>'+bd(a[0])+'<span class="tx"><b>'+a[1]+'</b><small>'+a[2]+'</small></span><a class="go" href="'+u+'" target="_blank" rel="noopener">View</a></li>'}
 function fill(id,arr){document.getElementById(id).innerHTML=arr.map(row).join('')}
+var ADMISSIONS=[
+ {id:'brown',name:'Brown University',program:'Sc.M. Computer Science',year:'Fall 2026',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#66',logo:'brown.edu',prestige:'Ivy League private research university in Providence, Rhode Island. Known for its distinctive open curriculum and strong research culture.',url:'https://www.brown.edu/',qs:'https://www.topuniversities.com/universities/brown-university'},
+ {id:'jhu',name:'Johns Hopkins University',program:'MSE in Electrical and Computer Engineering',year:'2025',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#=20',logo:'jhu.edu',prestige:'Leading private research university, internationally recognised for research intensity, medicine, engineering and interdisciplinary scholarship.',url:'https://www.jhu.edu/',qs:'https://www.topuniversities.com/universities/johns-hopkins-university'},
+ {id:'bu',name:'Boston University',program:'M.S. in Electrical and Computer Engineering',year:'Graduate admission offer',award:'Dean’s Graduate Scholarship',amount:'45% tuition scholarship',rank:'#94',logo:'bu.edu',prestige:'Major private research university in Boston with a broad global research profile and strong engineering, computing and health-science communities.',url:'https://www.bu.edu/',qs:'https://www.topuniversities.com/universities/boston-university'},
+ {id:'drexel',name:'Drexel University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Dean’s Fellowship',amount:'US$16,000',rank:'#771–780',logo:'drexel.edu',prestige:'Philadelphia-based R1 research university known for experiential learning and its cooperative education model connecting study with professional experience.',url:'https://drexel.edu/',qs:'https://www.topuniversities.com/universities/drexel-university'},
+ {id:'neu',name:'Northeastern University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Tuition scholarship',amount:'10% tuition scholarship',rank:'#=385',logo:'northeastern.edu',prestige:'R1 research university recognised for experiential learning, co-op education and a multi-campus global network.',url:'https://www.northeastern.edu/',qs:'https://www.topuniversities.com/universities/northeastern-university'},
+ {id:'njit',name:'New Jersey Institute of Technology',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Graduate Provost’s Scholarship',amount:'US$10,000 per year',rank:'#741–750',logo:'njit.edu',prestige:'Public R1 polytechnic research university with a STEM-focused profile and strong engineering, computing and applied research programmes.',url:'https://www.njit.edu/',qs:'https://www.topuniversities.com/universities/new-jersey-institute-technology-njit'},
+ {id:'nyu',name:'New York University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Merit scholarship',amount:'US$5,000 per year',rank:'#58',logo:'nyu.edu',prestige:'Major private research university with a global academic network and a prominent New York City campus, known for international reach and cross-disciplinary programmes.',url:'https://www.nyu.edu/',qs:'https://www.topuniversities.com/universities/new-york-university-nyu'}
+];
+var admissionGrid=document.getElementById('admissionGrid');
+admissionGrid.innerHTML=ADMISSIONS.map(function(a){
+ return '<button class="admission-card" type="button" data-admission="'+a.id+'"><span class="admission-logo"><img loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><span class="admission-info"><strong>'+a.name+'</strong><span>'+a.program+' · '+a.year+'</span></span><span class="admission-chip">View offer ↗</span></button>';
+}).join('');
+var admissionDialog=document.getElementById('admissionDialog');
+function openAdmission(id){
+ var a=ADMISSIONS.find(function(x){return x.id===id;}); if(!a)return;
+ document.getElementById('admModalContent').innerHTML=
+ '<div class="adm-modal-head"><span class="admission-logo"><img alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><div><h3>'+a.name+'</h3><p>'+a.program+' · '+a.year+'</p></div><button class="adm-close" type="button" aria-label="Close" onclick="document.getElementById(\'admissionDialog\').close()">×</button></div>'+
+ '<div class="adm-modal-body"><div class="adm-highlights"><div class="adm-stat"><small>QS World University Ranking 2027</small><strong>'+a.rank+'</strong></div><div class="adm-stat"><small>Scholarship / fellowship</small><strong style="font-size:15px">'+a.amount+'</strong></div><div class="adm-stat"><small>Award</small><strong style="font-size:15px">'+a.award+'</strong></div><div class="adm-stat"><small>Admission record</small><strong style="font-size:15px">'+a.year+'</strong></div></div><p class="adm-note"><b>University profile &amp; reputation</b><br>'+a.prestige+'</p><p class="adm-note">The QS rank shown is the university-wide QS World University Rankings 2027 position, not a programme-specific or subject ranking. Scholarship amounts reflect the offer details available for this portfolio entry; they are not estimates of total funding.</p><div class="adm-links"><a href="'+a.url+'" target="_blank" rel="noopener">University website ↗</a><a href="'+a.qs+'" target="_blank" rel="noopener">QS profile ↗</a></div><p class="adm-source">Ranking source: QS World University Rankings 2027. Programme details or award values not specified above are intentionally left unclaimed.</p></div>';
+ admissionDialog.showModal();
+}
+admissionGrid.addEventListener('click',function(e){var b=e.target.closest('[data-admission]');if(b)openAdmission(b.getAttribute('data-admission'));});
+
 document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
   var title=item[0],type=item[1],date=item[2],headline=item[3],url=item[4],mark=item[5];
   var domains={
@@ -469,9 +372,9 @@ document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
   var domain=domains[title]||"";
   var brand=domain?'<img class="brand-logo" loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+domain+'&sz=128">':'';
   var brandMarkup=title==='MIT Technology Review'
-    ? '<div class="press-brand special-mit"><img class="brand-logo mit-logo" loading="lazy" alt="MIT Technology Review logo" src="https://upload.wikimedia.org/wikipedia/commons/8/86/MIT_Technology_Review_modern_logo.svg"><strong>MIT</strong><small>TECHNOLOGY REVIEW</small></div>'
+    ? '<div class="press-brand special-mit"><strong>MIT TR</strong><small>TECHNOLOGY REVIEW</small></div>'
     : title==='IEEE Spectrum'
-      ? '<div class="press-brand special-ieee"><img class="brand-logo" loading="lazy" alt="IEEE Spectrum logo" src="https://www.google.com/s2/favicons?domain=spectrum.ieee.org&sz=256"><strong>IEEE SPECTRUM</strong><small>THE IEEE VOICE OF ENGINEERING</small></div>'
+      ? '<div class="press-brand special-ieee"><strong>IEEE SPECTRUM</strong><small>THE IEEE VOICE OF ENGINEERING</small></div>'
       : '<div class="press-brand">'+brand+'<span>'+title+'</span></div>';
   var thumb='<div class="press-thumb">'+brandMarkup+(url?'<img class="article-image" loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'">':'')+'</div>';
   var isEditorialPitch=(title==='MIT Technology Review'||title==='IEEE Spectrum');
@@ -516,65 +419,20 @@ document.querySelectorAll('[data-press-upload]').forEach(function(input){
   });
 });
 
-// Show a visual capture of the actual IEEE WIE article in the upper card preview.
-// The capture service renders the public article page; the original card button still opens IEEE directly.
+// Article images are optional; retain the publisher branding if a site blocks metadata previews.
 document.querySelectorAll('.press-thumb img.article-image[data-preview-url]').forEach(function(img){
   var target=img.getAttribute('data-preview-url');
-  img.src='https://image.thum.io/get/width/1000/crop/520/noanimate/'+target;
-  img.onload=function(){
-    var fallback=img.parentElement.querySelector('.press-brand');
-    if(fallback) fallback.style.display='none';
-  };
-  img.onerror=function(){
-    img.remove();
-    var fallback=img.parentElement.querySelector('.press-brand');
-    if(fallback) fallback.style.display='flex';
-  };
+  fetch('https://api.microlink.io/?url='+encodeURIComponent(target)+'&screenshot=false')
+    .then(function(r){if(!r.ok) throw new Error('preview unavailable'); return r.json();})
+    .then(function(data){var d=data&&data.data;if(d&&d.image&&d.image.url){img.src=d.image.url;}else{img.remove();}})
+    .catch(function(){img.remove();});
 });
 
-
-var ADMISSIONS=[
- {id:'brown',name:'Brown University',program:'Sc.M. Computer Science',year:'Fall 2026',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#66',logo:'brown.edu',prestige:'Ivy League private research university in Providence, Rhode Island. Known for its distinctive open curriculum and strong research culture.',url:'https://www.brown.edu/',qs:'https://www.topuniversities.com/universities/brown-university'},
- {id:'jhu',name:'Johns Hopkins University',program:'MSE in Electrical and Computer Engineering',year:'2025',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#=20',logo:'jhu.edu',prestige:'Leading private research university, internationally recognised for research intensity, medicine, engineering and interdisciplinary scholarship.',url:'https://www.jhu.edu/',qs:'https://www.topuniversities.com/universities/johns-hopkins-university'},
- {id:'bu',name:'Boston University',program:'M.S. in Electrical and Computer Engineering',year:'Graduate admission offer',award:'Dean’s Graduate Scholarship',amount:'45% tuition scholarship',rank:'#94',logo:'bu.edu',prestige:'Major private research university in Boston with a broad global research profile and strong engineering, computing and health-science communities.',url:'https://www.bu.edu/',qs:'https://www.topuniversities.com/universities/boston-university'},
- {id:'drexel',name:'Drexel University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Dean’s Fellowship',amount:'US$16,000',rank:'#771–780',logo:'drexel.edu',prestige:'Philadelphia-based R1 research university known for experiential learning and its cooperative education model connecting study with professional experience.',url:'https://drexel.edu/',qs:'https://www.topuniversities.com/universities/drexel-university'},
- {id:'neu',name:'Northeastern University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Tuition scholarship',amount:'10% tuition scholarship',rank:'#=385',logo:'northeastern.edu',prestige:'R1 research university recognised for experiential learning, co-op education and a multi-campus global network.',url:'https://www.northeastern.edu/',qs:'https://www.topuniversities.com/universities/northeastern-university'},
- {id:'njit',name:'New Jersey Institute of Technology',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Graduate Provost’s Scholarship',amount:'US$10,000 per year',rank:'#741–750',logo:'njit.edu',prestige:'Public R1 polytechnic research university with a STEM-focused profile and strong engineering, computing and applied research programmes.',url:'https://www.njit.edu/',qs:'https://www.topuniversities.com/universities/new-jersey-institute-technology-njit'},
- {id:'nyu',name:'New York University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Merit scholarship',amount:'US$5,000 per year',rank:'#58',logo:'nyu.edu',prestige:'Major private research university with a global academic network and a prominent New York City campus, known for international reach and cross-disciplinary programmes.',url:'https://www.nyu.edu/',qs:'https://www.topuniversities.com/universities/new-york-university-nyu'}
-];
-var admissionGrid=document.getElementById('admissionGrid');
-admissionGrid.innerHTML=ADMISSIONS.map(function(a){
- return '<button class="admission-card" type="button" data-admission="'+a.id+'"><span class="admission-logo"><img loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><span class="admission-info"><strong>'+a.name+'</strong><span>'+a.program+' · '+a.year+'</span></span><span class="admission-chip">View offer ↗</span></button>';
-}).join('');
-var admissionDialog=document.getElementById('admissionDialog');
-function openAdmission(id){
- var a=ADMISSIONS.find(function(x){return x.id===id;}); if(!a)return;
- document.getElementById('admModalContent').innerHTML=
- '<div class="adm-modal-head"><span class="admission-logo"><img alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><div><h3>'+a.name+'</h3><p>'+a.program+' · '+a.year+'</p></div><button class="adm-close" type="button" aria-label="Close" onclick="document.getElementById(\'admissionDialog\').close()">×</button></div>'+
- '<div class="adm-modal-body"><div class="adm-highlights"><div class="adm-stat"><small>QS World University Ranking 2027</small><strong>'+a.rank+'</strong></div><div class="adm-stat"><small>Scholarship / fellowship</small><strong style="font-size:15px">'+a.amount+'</strong></div><div class="adm-stat"><small>Award</small><strong style="font-size:15px">'+a.award+'</strong></div><div class="adm-stat"><small>Admission record</small><strong style="font-size:15px">'+a.year+'</strong></div></div><p class="adm-note"><b>University profile &amp; reputation</b><br>'+a.prestige+'</p><p class="adm-note">The QS rank shown is the university-wide QS World University Rankings 2027 position, not a programme-specific or subject ranking. Scholarship amounts reflect the offer details available for this portfolio entry; they are not estimates of total funding.</p><div class="adm-links"><a href="'+a.url+'" target="_blank" rel="noopener">University website ↗</a><a href="'+a.qs+'" target="_blank" rel="noopener">QS profile ↗</a></div><p class="adm-source">Ranking source: QS World University Rankings 2027. Programme details or award values not specified above are intentionally left unclaimed.</p></div>';
- admissionDialog.showModal();
-}
-admissionGrid.addEventListener('click',function(e){var b=e.target.closest('[data-admission]');if(b)openAdmission(b.getAttribute('data-admission'));});
 
 fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);
 document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
 document.getElementById('skills').innerHTML=["Graph neural networks","Trustworthy AI","Battery management","Power electronics","Embedded systems","Robotics","LLMs and NLP","TinyML","Smart grids","Python and MATLAB"].map(function(s){return '<span class="tag">'+s+'</span>'}).join('');
-document.getElementById('hl').innerHTML=[
-  ['meesho','Meesho','100 Faces Bot marketplace listing','meesho.com'],
-  ['gwr','Guinness World Records','Record attempt submission','guinnessworldrecords.com'],
-  ['ibr','India Book of Records','Record / recognition','indiabookofrecords.in'],
-  ['abr','Asia Book of Records','Record application','asiabookofrecords.com'],
-  ['ieee','IEEE','Senior Member · Best Paper Awards','ieee.org'],
-  ['limca','Limca Book of Records','Record proposal',''],
-  ['','Best Paper Awards','IEEE ESCI 2026 · ICPCIEE 2024',''],
-  ['','Patent & innovation','Patent and product development','']
-].map(function(x){
-  var fallback=x[1].slice(0,5).toUpperCase();
-  var logo=x[3]
-    ? '<img loading="lazy" src="https://www.google.com/s2/favicons?domain='+x[3]+'&sz=128" alt="'+x[1]+' logo" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><b style="display:none">'+fallback+'</b>'
-    : '<b>'+fallback+'</b>';
-  return '<div class="highlight-card"><span class="highlight-logo">'+logo+'</span><span>'+x[1]+'<small>'+x[2]+'</small></span></div>';
-}).join('');
+document.getElementById('hl').innerHTML='<span>'+bd('meesho')+'Meesho: ranked 3rd among shopping apps in India</span><span>'+bd('gwr')+'Guinness World Records™ attempt</span><span>'+bd('ieee')+'IEEE Senior Member</span><span>2 Best Paper Awards</span><span>Patent technology licensed to 4 companies</span>';
 var side='<a class="p" href="'+CV+'">Download my CV</a><a href="'+LI+'">'+bd('li')+'LinkedIn</a><a href="'+GS+'">'+bd('scholar')+'Google Scholar</a><a href="https://netless-library.in">Netless Library website</a><a href="https://mimibuddy.store">Mimi robot store</a><a href="mailto:ruksana883@gmail.com">'+bd('gmail')+'ruksana883@gmail.com</a>';
 document.getElementById('side').innerHTML=side;
 document.getElementById('foot').innerHTML='<a class="p" href="mailto:ruksana883@gmail.com">Email me</a><a href="'+LI+'">'+bd('li')+'Connect on LinkedIn</a>';
@@ -588,10 +446,8 @@ function mediaUploadLink(i){
   var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
   return REPO_UPLOAD+'media/'+slug;
 }
-var PROJECT_MEDIA_FILES={};
 async function listMediaFiles(folder){
-  // GitHub's public Contents API lists all filenames in a folder, so users can
-  // upload files with any name. Files must be committed to the main branch.
+  // List every file in the matching GitHub folder; filenames do not matter.
   var api='https://api.github.com/repos/ruksana883-cmd/ruksana883-cmd.github.io/contents/'+folder+'?ref=main';
   try{
     var response=await fetch(api,{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});
@@ -601,39 +457,29 @@ async function listMediaFiles(folder){
     return items.filter(function(item){
       return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v)$/i.test(item.name);
     }).sort(function(a,b){
+      // Prefer images first; then sort by filename for a predictable gallery.
       var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
       var bi=/\.(png|jpe?g|gif|webp|avif)$/i.test(b.name)?0:1;
       return ai-bi || a.name.localeCompare(b.name);
     });
-  }catch(e){console.warn('Could not list '+folder,e);return [];}
+  }catch(e){return [];}
 }
-function mediaUrl(item){
-  return item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
-}
-function isVideoFile(item){return /\.(mp4|webm|mov|m4v)$/i.test(item.name);}
-function thumbMarkup(item,projectIndex,fileIndex){
-  var url=mediaUrl(item).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  var inside=isVideoFile(item)
-    ? '<video muted playsinline preload="metadata" src="'+url+'"></video>'
-    : '<img loading="lazy" src="'+url+'" alt="Uploaded project preview">';
-  return '<button class="media-thumb" type="button" data-media-open="'+projectIndex+'" data-media-file="'+fileIndex+'" aria-label="Open uploaded media">'+inside+'</button>';
+function mediaMarkup(item){
+  var url=item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
+  var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  if(/\.(mp4|webm|mov|m4v)$/i.test(item.name)){
+    return '<video controls playsinline preload="metadata" src="'+safeUrl+'"></video>';
+  }
+  return '<img loading="lazy" src="'+safeUrl+'" alt="Uploaded portfolio media">';
 }
 async function mountProfilePhoto(){
   var files=await listMediaFiles('media/profile');
-  var photo=files.find(function(item){return !isVideoFile(item);});
+  var photo=files.find(function(item){return /\.(png|jpe?g|gif|webp|avif)$/i.test(item.name);});
   if(photo){
     var frame=document.getElementById('profileFrame');
-    frame.innerHTML='<img src="'+mediaUrl(photo)+'" alt="Shiek Ruksana profile photograph">';
-    var upload=document.getElementById('profileUpload');if(upload)upload.remove();
-  }
-}
-async function mountCoverPhoto(){
-  var files=await listMediaFiles('media/cover');
-  var photo=files.find(function(item){return !isVideoFile(item);});
-  if(photo){
-    var frame=document.getElementById('coverFrame');
-    frame.style.backgroundImage='linear-gradient(90deg,rgba(7,24,31,.72),rgba(7,24,31,.16)),url("'+mediaUrl(photo)+'")';
-    var upload=document.getElementById('coverUpload');if(upload)upload.remove();
+    frame.innerHTML=mediaMarkup(photo);
+    var upload=document.getElementById('profileUpload');
+    if(upload)upload.remove();
   }
 }
 async function mountProjectMedia(){
@@ -641,59 +487,30 @@ async function mountProjectMedia(){
   for(var card of cards){
     var i=Number(card.getAttribute('data-project-media'));
     var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
+    var gallery=card.querySelector('.media-gallery');
     var files=await listMediaFiles('media/'+slug);
-    PROJECT_MEDIA_FILES[i]=files;
     if(files.length){
-      var main=files[0],shot=card.querySelector('.shot');
-      var url=mediaUrl(main).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-      var visual=isVideoFile(main)
-        ? '<video class="banner-media" muted playsinline preload="metadata" src="'+url+'"></video>'
-        : '<img class="banner-media" src="'+url+'" alt="'+P[i][1]+' project">';
-      shot.innerHTML=visual+'<span class="pl">'+PLAY+'</span>';
-      shot.setAttribute('aria-label','Open uploaded media for '+P[i][1]);
-      var gallery=card.querySelector('.media-gallery');
-      var extras=files.slice(1);
-      gallery.innerHTML=extras.map(function(item,j){return thumbMarkup(item,i,j+1)}).join('');
-      if(!extras.length)gallery.remove();
+      gallery.innerHTML=files.map(mediaMarkup).join('');
       var upload=card.querySelector('.media-upload');if(upload)upload.remove();
     }
   }
 }
-function openProjectMedia(i,j){
-  var p=P[i],files=PROJECT_MEDIA_FILES[i]||[],item=files[j||0];
-  document.getElementById('vt').textContent=p[1];
-  if(item){
-    var u=mediaUrl(item);
-    vb.innerHTML=isVideoFile(item)
-      ? '<video controls autoplay playsinline src="'+u+'"></video>'
-      : '<img src="'+u+'" alt="'+p[1]+'" style="width:100%;height:100%;object-fit:contain">';
-  }else{
-    var src=VIDEOS[p[1]];
-    vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Media coming soon. Upload photos or videos using this project card.</div>';
-  }
-  document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
-  vd.showModal();
-}
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Any filename · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Opens secure GitHub upload · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
 mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
-function openV(i){openProjectMedia(i,0)}
+function openV(i){var p=P[i],src=VIDEOS[p[1]];document.getElementById('vt').textContent=p[1];
+vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Video coming soon.<br>Watch the demo using the link below.</div>';
+document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
+vd.showModal()}
 function closeV(){vb.innerHTML='';vd.close()}
-document.addEventListener('click',function(e){
-  var c=e.target.closest('[data-c]'),m=e.target.closest('[data-media-open]'),v=e.target.closest('[data-v]');
-  if(c){cur=c.getAttribute('data-c');draw()}
-  else if(m){openProjectMedia(+m.getAttribute('data-media-open'),+m.getAttribute('data-media-file'))}
-  else if(v){openV(+v.getAttribute('data-v'))}
-  else if(e.target===vd){closeV()}
-});
+document.addEventListener('click',function(e){var c=e.target.closest('[data-c]'),v=e.target.closest('[data-v]');if(c){cur=c.getAttribute('data-c');draw()}else if(v){openV(+v.getAttribute('data-v'))}else if(e.target===vd){closeV()}});
 document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
 draw();
 mountProfilePhoto();
-mountCoverPhoto();
 </script>
 </body>
 </html>
