@@ -108,6 +108,20 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .project-link-preview b{font-size:11px}
 .project-link-preview small{font-size:9px;color:var(--muted);margin-top:2px}
 .project-link-preview i{font-style:normal;color:var(--ac);font-size:13px}
+
+/* Project hero: square link-preview tiles replace the video-play banner */
+.project-link-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:10px;align-content:center;width:100%;height:100%;min-height:220px;padding:14px;background:linear-gradient(145deg,#eef5f3,#dce9e6);overflow:hidden}
+.project-link-square{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-width:0;aspect-ratio:1/1;overflow:hidden;border:1px solid rgba(25,75,73,.18);border-radius:13px;background:linear-gradient(145deg,#fff,#e5efed);color:#183b3b;text-decoration:none;box-shadow:0 5px 14px rgba(15,45,48,.1);transition:transform .2s ease,box-shadow .2s ease}
+.project-link-square:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(15,45,48,.17)}
+.project-link-square .site-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#e8f0ef}
+.project-link-square .site-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:12px;text-align:center;background:linear-gradient(145deg,#f9fcfb,#dce9e6)}
+.project-link-square .site-fallback img{width:42px;height:42px;object-fit:contain;padding:5px;border-radius:10px;background:white}
+.project-link-square .site-fallback b{font-size:12px;line-height:1.25}
+.project-link-square .site-name{position:relative;z-index:2;display:block;padding:9px 8px;background:linear-gradient(transparent,rgba(5,25,29,.9));color:#fff;font-size:10px;font-weight:750;line-height:1.2;overflow-wrap:anywhere}
+.project-link-square .site-open{position:absolute;right:7px;top:7px;z-index:3;width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.94);color:#176b67;font-size:13px}
+.shot.project-links-mode{padding:0;border:0;background:transparent!important;cursor:default}
+.shot.project-links-mode .pl{display:none}
+@media(max-width:700px){.project-link-hero{min-height:190px;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));padding:11px;gap:8px}}
 #pgrid{display:grid;width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
 #pgrid .card{min-width:0;width:100%;max-width:100%;overflow:hidden}
 #pgrid .media-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;padding:10px 14px 0;min-width:0}
@@ -137,6 +151,14 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .card{border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:box-shadow .2s,transform .2s}
 .card:hover{box-shadow:0 12px 28px rgba(20,54,58,.12);transform:translateY(-3px)}
 .shot{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;color:#fff;overflow:hidden;font-family:inherit}
+.shot{position:relative;aspect-ratio:16/9;min-height:205px;background:#173d43!important}
+.shot .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.shot .hero-pdf{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#e7f1ef,#cbdedb);color:#176b67}
+.shot .hero-pdf b{font-size:34px;letter-spacing:.1em}
+.shot .hero-pdf span{max-width:85%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.shot .pl{z-index:2}
+.media-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px;padding:10px 14px 0}
+.media-gallery:empty{display:none}
 .shot .big{font-size:30px;font-weight:800;letter-spacing:-.01em;text-align:center;padding:0 16px;opacity:.95}
 .shot svg.lg{width:120px;fill:#fff;opacity:.95}
 .shot .pl{position:absolute;right:12px;bottom:12px;width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.3);transition:transform .15s}
@@ -554,26 +576,32 @@ async function mountProjectMedia(){
     var i=Number(card.getAttribute('data-project-media'));
     var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
     var gallery=card.querySelector('.media-gallery');
-    var upload=card.querySelector('.media-upload');
     if(!gallery) return;
     try{
       var files=await listMediaFiles('media/'+slug);
-      if(files.length){
-        gallery.innerHTML=files.map(mediaMarkup).join('');
-        if(upload) upload.remove();
-      } else {
-        gallery.innerHTML='';
-        if(upload) upload.hidden=false;
-      }
-    }catch(error){
-      if(upload) upload.hidden=false;
-    }
+      if(files.length) gallery.innerHTML=files.map(mediaMarkup).join('');
+    }catch(error){}
   }));
+}
+
+function projectLinkSquares(links){
+  if(!links||!links.length) return '';
+  return '<div class="project-link-hero">'+links.map(function(l){
+    var host='';try{host=new URL(l[1]).hostname.replace(/^www\\./,'')}catch(e){}
+    var icon=host?'https://www.google.com/s2/favicons?domain='+host+'&sz=128':'';
+    var shot='https://image.thum.io/get/width/700/crop/500/noanimate/'+l[1];
+    return '<a class="project-link-square" href="'+l[1]+'" target="_blank" rel="noopener" title="Open '+l[0]+'">'+
+      '<div class="site-fallback"><img loading="lazy" src="'+icon+'" alt="" onerror="this.style.display=\'none\'"><b>'+l[0]+'</b></div>'+
+      '<img class="site-shot" loading="lazy" src="'+shot+'" alt="'+l[0]+' website preview" onerror="this.style.display=\'none\'">'+
+      '<span class="site-open">↗</span><span class="site-name">'+l[0]+'</span></a>';
+  }).join('')+'</div>';
 }
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Upload project media <small>Any filename · images, videos or PDF · visible after GitHub commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="project-link-previews">'+p[7].map(function(l){var host='';try{host=new URL(l[1]).hostname.replace(/^www\\./,'')}catch(e){}return '<a class="project-link-preview" href="'+l[1]+'" target="_blank" rel="noopener"><span class="project-link-icon">'+(host?'<img loading="lazy" src="https://www.google.com/s2/favicons?domain='+host+'&sz=128" alt="">':'↗')+'</span><span><b>'+l[0]+'</b><small>'+host+'</small></span><i>↗</i></a>'}).join('')+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button></div></div></article>'}).join('');
+var links=p[7]||[];
+var hero=links.length?projectLinkSquares(links):'<button class="shot" data-v="'+o.i+'" aria-label="Open project preview" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button>';
+return '<article class="card" data-project-media="'+o.i+'">'+hero+'<div class="media-gallery" aria-live="polite"></div><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div></div></article>'}).join('');
 mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
@@ -606,3 +634,5 @@ window.addEventListener('focus',function(){draw();});
 </script>
 </body>
 </html>
+
+<style>.media-upload{display:none!important}</style>
