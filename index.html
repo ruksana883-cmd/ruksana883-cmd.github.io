@@ -43,6 +43,34 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .wie-preview-copy p{margin:0;color:var(--muted);font-size:14.5px}
 .wie-preview-cta{display:inline-flex;align-items:center;gap:8px;margin-top:5px;font-weight:800;color:var(--ac)}
 
+
+.admission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.admission-card{display:flex;align-items:center;gap:15px;width:100%;min-width:0;text-align:left;padding:18px;border:1px solid var(--line);border-radius:17px;background:#fff;box-shadow:0 5px 18px rgba(20,43,53,.05);cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;color:var(--ink)}
+.admission-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(20,43,53,.1);border-color:var(--ac)}
+.admission-logo{width:52px;height:52px;flex:0 0 52px;border:1px solid var(--line);border-radius:13px;display:grid;place-items:center;background:#fff;overflow:hidden}
+.admission-logo img{width:34px;height:34px;object-fit:contain}
+.admission-info{min-width:0;flex:1}
+.admission-info strong{display:block;font-size:15px;line-height:1.3}
+.admission-info span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.admission-chip{font-size:10px;font-weight:800;letter-spacing:.04em;color:var(--ac);background:var(--soft);border-radius:999px;padding:7px 10px;white-space:nowrap}
+#admissionDialog{width:min(620px,calc(100% - 28px));max-height:88vh;overflow:auto;border:0;border-radius:22px;padding:0;box-shadow:0 25px 80px rgba(5,25,35,.28);color:var(--ink)}
+#admissionDialog::backdrop{background:rgba(9,24,34,.62);backdrop-filter:blur(4px)}
+.adm-modal-head{display:flex;align-items:center;gap:16px;padding:24px;background:linear-gradient(135deg,#eaf3f1,#f7f9fb);border-bottom:1px solid var(--line)}
+.adm-modal-head .admission-logo{width:62px;height:62px;flex-basis:62px}
+.adm-modal-head h3{font-size:22px;line-height:1.2}
+.adm-modal-head p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.adm-close{margin-left:auto;align-self:flex-start;border:0;border-radius:50%;width:34px;height:34px;background:#fff;font-size:22px;cursor:pointer;color:var(--ink)}
+.adm-modal-body{padding:22px 24px 24px}
+.adm-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.adm-stat{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.adm-stat small{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.adm-stat strong{display:block;font-size:19px;margin-top:5px;color:var(--ac)}
+.adm-note{font-size:13px;line-height:1.65;color:var(--muted);margin:12px 0}
+.adm-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.adm-links a{display:inline-flex;padding:10px 14px;border-radius:999px;background:var(--dark);color:white;text-decoration:none;font-size:12px;font-weight:700}
+.adm-source{font-size:11px;color:var(--muted);margin-top:14px}
+@media(max-width:680px){.admission-grid{grid-template-columns:1fr}.admission-card{padding:14px}.adm-highlights{grid-template-columns:1fr 1fr}}
+
 .press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:26px auto 0;max-width:1120px;align-items:stretch}
 .press-tile{position:relative;display:flex;flex-direction:column;min-width:0;min-height:390px;overflow:hidden;padding:0;border:1px solid #dce5e4;border-radius:18px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 7px 22px rgba(20,43,53,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:pressRise .5s both;animation-delay:calc(var(--tile-index,0)*20ms)}
 .press-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,43,53,.12);border-color:var(--ac)}
@@ -257,7 +285,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 </head>
 <body>
 <nav aria-label="Sections"><div>
-<a href="#about">About</a><a href="#projects">Projects</a><a href="#research">Research</a><a href="#awards">Awards</a><a href="#funding">Funding</a><a href="#service">Service</a><a href="#press">Press</a><a href="#contact">Contact</a>
+<a href="#about">About</a><a href="#projects">Projects</a><a href="#research">Research</a><a href="#admissions">Master’s Admissions</a><a href="#awards">Awards</a><a href="#funding">Funding</a><a href="#service">Service</a><a href="#press">Press</a><a href="#contact">Contact</a>
 </div></nav>
 
 <div class="page">
@@ -297,11 +325,18 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 <ul class="rows" id="patents"></ul>
 </section>
 
+
+<section id="admissions">
+<h2 class="t">Master’s Admissions &amp; Scholarships</h2>
+<p class="intro">A record of graduate admission offers and merit awards. Select a university to view its offer highlights, scholarship information and QS World University Ranking.</p>
+<div class="admission-grid" id="admissionGrid"></div>
+</section>
+
 <section id="awards">
 <h2 class="t">Awards, records and honours</h2>
 <div class="two">
 <div><h3 class="k">Awards</h3><ul class="rows" id="awardsL"></ul></div>
-<div><h3 class="k">Records</h3><ul class="rows" id="recordsL"></ul><h3 class="k" style="margin-top:22px">Admission offers</h3><ul class="rows" id="offersL"></ul></div>
+<div><h3 class="k">Records</h3><ul class="rows" id="recordsL"></ul></div>
 </div>
 </section>
 
@@ -329,6 +364,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 </main>
 </div>
 
+<dialog id="admissionDialog" aria-label="Master’s admission offer details"><div id="admModalContent"></div></dialog>
 <dialog id="vd" aria-label="Project video"><div class="vh"><span id="vt"></span><button id="vx" aria-label="Close video">×</button></div><div class="vb" id="vbox"></div><div class="vf" id="vf"></div></dialog>
 
 <script>
@@ -482,6 +518,30 @@ document.querySelectorAll('.press-thumb img.article-image[data-preview-url]').fo
     if(fallback) fallback.style.display='flex';
   };
 });
+
+
+var ADMISSIONS=[
+ {id:'brown',name:'Brown University',program:'Sc.M. Computer Science',year:'Fall 2026',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#66',logo:'brown.edu',prestige:'Ivy League private research university in Providence, Rhode Island. Known for its distinctive open curriculum and strong research culture.',url:'https://www.brown.edu/',qs:'https://www.topuniversities.com/universities/brown-university'},
+ {id:'jhu',name:'Johns Hopkins University',program:'MSE in Electrical and Computer Engineering',year:'2025',award:'Scholarship not specified in the offer details available here',amount:'Not recorded',rank:'#=20',logo:'jhu.edu',prestige:'Leading private research university, internationally recognised for research intensity, medicine, engineering and interdisciplinary scholarship.',url:'https://www.jhu.edu/',qs:'https://www.topuniversities.com/universities/johns-hopkins-university'},
+ {id:'bu',name:'Boston University',program:'M.S. in Electrical and Computer Engineering',year:'Graduate admission offer',award:'Dean’s Graduate Scholarship',amount:'45% tuition scholarship',rank:'#94',logo:'bu.edu',prestige:'Major private research university in Boston with a broad global research profile and strong engineering, computing and health-science communities.',url:'https://www.bu.edu/',qs:'https://www.topuniversities.com/universities/boston-university'},
+ {id:'drexel',name:'Drexel University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Dean’s Fellowship',amount:'US$16,000',rank:'#771–780',logo:'drexel.edu',prestige:'Philadelphia-based R1 research university known for experiential learning and its cooperative education model connecting study with professional experience.',url:'https://drexel.edu/',qs:'https://www.topuniversities.com/universities/drexel-university'},
+ {id:'neu',name:'Northeastern University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Tuition scholarship',amount:'10% tuition scholarship',rank:'#=385',logo:'northeastern.edu',prestige:'R1 research university recognised for experiential learning, co-op education and a multi-campus global network.',url:'https://www.northeastern.edu/',qs:'https://www.topuniversities.com/universities/northeastern-university'},
+ {id:'njit',name:'New Jersey Institute of Technology',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Graduate Provost’s Scholarship',amount:'US$10,000 per year',rank:'#741–750',logo:'njit.edu',prestige:'Public R1 polytechnic research university with a STEM-focused profile and strong engineering, computing and applied research programmes.',url:'https://www.njit.edu/',qs:'https://www.topuniversities.com/universities/new-jersey-institute-technology-njit'},
+ {id:'nyu',name:'New York University',program:'Graduate admission offer · programme details not specified',year:'Graduate admission offer',award:'Merit scholarship',amount:'US$5,000 per year',rank:'#58',logo:'nyu.edu',prestige:'Major private research university with a global academic network and a prominent New York City campus, known for international reach and cross-disciplinary programmes.',url:'https://www.nyu.edu/',qs:'https://www.topuniversities.com/universities/new-york-university-nyu'}
+];
+var admissionGrid=document.getElementById('admissionGrid');
+admissionGrid.innerHTML=ADMISSIONS.map(function(a){
+ return '<button class="admission-card" type="button" data-admission="'+a.id+'"><span class="admission-logo"><img loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><span class="admission-info"><strong>'+a.name+'</strong><span>'+a.program+' · '+a.year+'</span></span><span class="admission-chip">View offer ↗</span></button>';
+}).join('');
+var admissionDialog=document.getElementById('admissionDialog');
+function openAdmission(id){
+ var a=ADMISSIONS.find(function(x){return x.id===id;}); if(!a)return;
+ document.getElementById('admModalContent').innerHTML=
+ '<div class="adm-modal-head"><span class="admission-logo"><img alt="" src="https://www.google.com/s2/favicons?domain='+a.logo+'&sz=128"></span><div><h3>'+a.name+'</h3><p>'+a.program+' · '+a.year+'</p></div><button class="adm-close" type="button" aria-label="Close" onclick="document.getElementById(\'admissionDialog\').close()">×</button></div>'+
+ '<div class="adm-modal-body"><div class="adm-highlights"><div class="adm-stat"><small>QS World University Ranking 2027</small><strong>'+a.rank+'</strong></div><div class="adm-stat"><small>Scholarship / fellowship</small><strong style="font-size:15px">'+a.amount+'</strong></div><div class="adm-stat"><small>Award</small><strong style="font-size:15px">'+a.award+'</strong></div><div class="adm-stat"><small>Admission record</small><strong style="font-size:15px">'+a.year+'</strong></div></div><p class="adm-note"><b>University profile &amp; reputation</b><br>'+a.prestige+'</p><p class="adm-note">The QS rank shown is the university-wide QS World University Rankings 2027 position, not a programme-specific or subject ranking. Scholarship amounts reflect the offer details available for this portfolio entry; they are not estimates of total funding.</p><div class="adm-links"><a href="'+a.url+'" target="_blank" rel="noopener">University website ↗</a><a href="'+a.qs+'" target="_blank" rel="noopener">QS profile ↗</a></div><p class="adm-source">Ranking source: QS World University Rankings 2027. Programme details or award values not specified above are intentionally left unclaimed.</p></div>';
+ admissionDialog.showModal();
+}
+admissionGrid.addEventListener('click',function(e){var b=e.target.closest('[data-admission]');if(b)openAdmission(b.getAttribute('data-admission'));});
 
 fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);
 document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
