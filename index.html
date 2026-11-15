@@ -31,6 +31,46 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .media-thumb{flex:0 0 94px;width:94px;height:68px;padding:0;border:0;border-radius:9px;overflow:hidden;background:#e8f3f0;cursor:pointer}
 .media-thumb img,.media-thumb video{display:block;width:100%;height:100%;object-fit:cover}
 .media-thumb:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.wie-preview{display:grid;grid-template-columns:minmax(220px, .9fr) 1.1fr;gap:0;margin:18px 0 22px;border:1.5px solid var(--line);border-radius:18px;overflow:hidden;background:#fff;text-decoration:none;color:var(--ink);box-shadow:0 8px 24px rgba(20,43,53,.08);transition:transform .2s,box-shadow .2s}
+.wie-preview:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,43,53,.14)}
+.wie-preview-art{min-height:220px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;color:#fff;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.22),transparent 32%),linear-gradient(135deg,#152c50,#6b2d78 58%,#176b67)}
+.wie-preview-brand{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.wie-preview-art strong{font-size:clamp(24px,3vw,34px);line-height:1.08;max-width:360px}
+.wie-preview-art small{font-size:12px;opacity:.85}
+.wie-preview-copy{padding:24px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.wie-preview-copy .eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ac)}
+.wie-preview-copy h3{font-size:clamp(20px,2.4vw,27px);line-height:1.2}
+.wie-preview-copy p{margin:0;color:var(--muted);font-size:14.5px}
+.wie-preview-cta{display:inline-flex;align-items:center;gap:8px;margin-top:5px;font-weight:800;color:var(--ac)}
+
+.press-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:16px;margin-top:22px}
+.press-tile{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:1/1;min-width:0;overflow:hidden;padding:18px;border:1px solid rgba(23,107,103,.18);border-radius:18px;background:linear-gradient(145deg,#f8fbfa,#e8f3f0 55%,#fff);color:var(--ink);text-decoration:none;box-shadow:0 6px 18px rgba(20,43,53,.07);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;animation:pressRise .55s both;animation-delay:calc(var(--tile-index,0)*35ms)}
+.press-tile:before{content:"";position:absolute;z-index:-1;width:180px;height:180px;right:-72px;top:-75px;border-radius:50%;background:radial-gradient(circle,rgba(23,107,103,.20),rgba(23,107,103,0) 70%);transition:transform .35s}
+.press-tile:hover{transform:translateY(-6px) scale(1.015);box-shadow:0 16px 30px rgba(20,43,53,.15);border-color:var(--ac)}
+.press-tile:hover:before{transform:scale(1.35)}
+.press-tile:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.press-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.press-number{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--ac)}
+.press-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:var(--dark);color:#fff;font-size:10px;font-weight:800;letter-spacing:.03em}
+.press-type{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ac)}
+.press-tile h3{font-size:17px;line-height:1.22;margin:8px 0}
+.press-thumb{height:43%;min-height:0;margin:-18px -18px 12px;position:relative;overflow:hidden;background:linear-gradient(135deg,#dcebe8,#edf2f5);border-bottom:1px solid rgba(23,107,103,.12)}
+.press-thumb img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
+.press-tile:hover .press-thumb img{transform:scale(1.06)}
+.press-thumb:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(8,20,28,.12));pointer-events:none}
+.press-tile .press-content{min-height:0;flex:1;display:flex;flex-direction:column;justify-content:center}
+.press-tile p{font-size:12px;line-height:1.45;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.press-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px;font-size:11px;font-weight:800;color:var(--ac)}
+.press-bottom span:last-child{font-size:18px;transition:transform .2s}
+.press-tile:hover .press-bottom span:last-child{transform:translate(3px,-3px)}
+.press-tile.no-link{cursor:default;background:linear-gradient(145deg,#f7f7f9,#edf0f2)}
+.press-tile.no-link:hover{transform:translateY(-3px)}
+.press-tile.no-link .press-mark{background:#687381}
+@keyframes pressRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.press-tile{animation:none;transition:none}}
+@media(max-width:520px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.press-tile{padding:13px;border-radius:14px}.press-tile h3{font-size:14px}.press-tile p{font-size:11px}.press-mark{width:30px;height:30px}}
+@media(max-width:640px){.wie-preview{grid-template-columns:1fr}.wie-preview-art{min-height:180px}}
+
 @media(max-width:520px){.ph{width:190px;height:190px}.cover{min-height:190px;padding:20px}.cover-upload{position:relative;right:auto;top:auto;margin:0 0 12px auto}.cover{display:block}.cover-content{margin-top:35px}}
 
 aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
@@ -180,7 +220,11 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 </div>
 </section>
 
-<section id="press"><h2 class="t">Press and features</h2><ul class="rows" id="pressL"></ul></section>
+<section id="press">
+<h2 class="t">Press, Media and International Features</h2>
+<p class="intro">International professional features, editorial consideration and newspaper coverage. Select a card with a link to open the original feature or e-paper.</p>
+<div class="press-grid" id="pressGrid"></div>
+</section>
 
 <footer id="contact">
 <h2>Let’s work together</h2>
@@ -246,10 +290,55 @@ var OFF=[["brown","Brown University, Sc.M. Computer Science","Fall 2026",""],["j
 var FUND=[["msme","MSME IDEA Hackathon 6.0, Stage I selected","Biodegradable battery · ₹15 lakh · Jul 2026","https://lnkd.in/p/djctTKss"],["msme","MSME IDEA Hackathon 6.0, proposal","AI battery management system",""],["msme","MSME Hackathons 3.0 and 4.0, Stage I","SiC EV on-board charger · 2023, 2024",""],["meity","GENESIS EIR Cohort-3, MeitY Startup Hub","Applicant · up to ₹10 lakh",""],["ieee","MOVE-A-THON 2026, IEEE India","SWARM-SAR · up to ₹1 lakh applied",""],["","Speedrun Accelerator","NeuralVolt · May 2026",""]];
 var REV=[["neurips","NeurIPS 2026","Datasets track, ethics review, AI4MetaScience workshop",""],["isca","INTERSPEECH 2026 · IEEE SLT 2026","Invited reviewer",""],["ieee","IEEE ECCE 2026","Invited reviewer",""],["ieee","IEEE SysCon 2026, Halifax","Technical Program Committee",""],["laccei","LACCEI 2026 · TEMSMET 2026","International reviewer",""]];
 var LEAD=[["ieee","Faculty Advisor, IEEE PELS Student Chapter","Vasavi College · Aug 2026 – present",""],["ieee","Evaluator, Tech for Tomorrow Hackathon","IEEE Computer Society",""],["","Chair, ACUMEN 2025 and 2026","Technical fest · sponsorship and budget",""],["","Professional body in-charge","IEEE, IEI, ISTE, IETE, CSI · 300+ students",""],["","Founder, department library","500+ books · usage up 30%",""]];
-var PRESS=[["ieee","IEEE Women in Engineering: “Ruksana’s Journey: From Gold Medalist to a Wider Engineering World”","Nov 2026","https://wie.ieee.org/ruksanas-journey-from-gold-medalist-to-a-wider-engineering-world/"],["ieee","IEEE Potentials: invited feature on a low-cost offline digital library","Nov/Dec 2026",""],["ieee","IEEE Spectrum, Hands On column: editorial consideration","2026",""],["","Capital Information, Sakshi, Mudra, Disha: Best Paper Award","Mar 2026","http://capitalinformation.net/view/745/14-march-2026/4"],["","Capital Information, Sakshi, Mudra and others: IEEE Senior Member","Apr–May 2026","https://www.capitalinformation.net/view/827/26-april-2026/2"]];
+var PRESS=[
+["IEEE Women in Engineering","International professional feature","Nov 2026","Ruksana’s Journey: From Gold Medalist to a Wider Engineering World","https://wie.ieee.org/ruksanas-journey-from-gold-medalist-to-a-wider-engineering-world/","IEEE WIE"],
+["IEEE WIE Member Highlight","Newsletter and global blog feature","Nov 2026","Ruksana’s Journey: From Gold Medalist to a Wider Engineering World","https://wie.ieee.org/ruksanas-journey-from-gold-medalist-to-a-wider-engineering-world/","IEEE WIE"],
+["MIT Technology Review","Technology story pitch · Editorial consideration","2026","Netless Library: ultra-low-cost portable offline digital library", "", "MIT TR"],
+["IEEE Spectrum","Hands On column · Editorial consideration","2026","Netless Library submitted for consideration; technical differentiation requested","", "IEEE"],
+["Capital Information","Hyderabad edition · Page 4","Mar 14, 2026","Vasavi College Assistant Professor Wins Best Paper Award at IEEE Conference","http://capitalinformation.net/view/745/14-march-2026/4","CI"],
+["Sakshi","Telugu daily · Charminar edition · Page 11","Mar 14, 2026","Coverage of Best Paper Award at IEEE ESCI 2026","http://epaper.sakshi.com/Charminar?eid=121&edate=14/03/2026&pgid=823073&device=desktop&view=3","SAK"],
+["Mudra News","Hyderabad edition · Page 9","Mar 14, 2026","Recognition of research contributions in AI and smart computing","http://epaper.mudranews.in/view/67/mudranews-epaper/9","MUD"],
+["ABN Andhra Jyothi","Newspaper coverage","Mar 2026","Coverage of international conference Best Paper Award","","ABN"],
+["Disha Daily","News feature · Journalist Jakkula Mamatha, Sub-Editor","Mar 2026","Assistant Professor Wins International Best Research Paper Award","http://dishadaily.com/telangana/hyderabad/assistant-professor-wins-international-best-research-paper-award-531838","DISHA"],
+["Mudra News","News feature · Naresh, Assistant Editor","Mar 2026","Sheikh Ruksana Receives IEEE International Best Award — Pune Conference","http://mudranews.in/sheikh-ruksana-receives-ieee-international-best-award-pune-conference","MUD"],
+["Capital Information","Hyderabad edition · Page 2","Apr 26, 2026","Ruksana Recognized as IEEE Senior Member","https://www.capitalinformation.net/view/827/26-april-2026/2","CI"],
+["Sakshi","Charminar edition · Page 9","Apr 26, 2026","ప్రొఫెసర్ షేక్ రుక్సానాకు ఐఈఈఈ సభ్యత్వం","https://epaper.sakshi.com/Charminar?eid=121&edate=26/04/2026&pgid=851510&device=desktop&view=3","SAK"],
+["Mudra News","Hyderabad edition · Page 9","Apr 26, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","https://epaper.mudranews.in/view/112/mudranews-epaper/9","MUD"],
+["Disha Daily","Greater Hyderabad edition · Page 13","Apr 26, 2026","రుక్సానాకు అరుదైన గౌరవం","https://epaper.dishadaily.com/4144876/Hyderabad-Tabloid/26-04-2026#page/13","DISHA"],
+["Aksharamedha 24/7","Hyderabad edition · Page 6","Apr 28, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","https://epaper.aksharamedha.com/view/1021/aksharamedha-epaper/6","AKS"],
+["Mudra News","News feature · Naresh, Assistant Editor","Apr 2026","IEEE Senior Member Recognition: Shaik Ruksana, Vasavi Engineering College Hyderabad","https://mudranews.in/ieee-senior-member-recognition-shaik-ruksana-vasavi-engineering-college-hyderabad-assistant-professor-engineering-achievement-ieee-senior-membership-artificial-intelligence-research-graph-neur","MUD"],
+["Vijaya Telangana","Hyderabad edition · Page 8","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","VT"],
+["Eyyala Telangana","Edition · Page 2","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","ET"],
+["Samagra Samachar Zindagi","Nizamabad edition · Page 2","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","SSZ"],
+["Lokam Teeru","Nizamabad edition · Page 2","May 1, 2026","రుక్సానాకు ఐఈఈఈ సీనియర్ సభ్యురాలిగా గుర్తింపు","","LT"]
+];
 function row(a){var u=a[3];return '<li'+(a[4]===1?' class="star"':'')+'>'+bd(a[0])+'<span class="tx"><b>'+a[1]+'</b><small>'+a[2]+'</small></span><a class="go" href="'+(u||CV)+'">'+(u?'Open':'In CV')+'</a></li>'}
 function fill(id,arr){document.getElementById(id).innerHTML=arr.map(row).join('')}
-fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);fill('pressL',PRESS);
+document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
+  var title=item[0],type=item[1],date=item[2],headline=item[3],url=item[4],mark=item[5];
+  var thumb=url?'<div class="press-thumb"><img loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'" src="https://www.google.com/s2/favicons?domain_url='+encodeURIComponent(url)+'&sz=256"></div>':'<div class="press-thumb"><div class="press-mark">'+mark+'</div></div>';
+  var body=thumb+'<div class="press-top"><span class="press-number">ARTICLE '+String(i+1).padStart(2,'0')+'</span><span class="press-mark">'+mark+'</span></div><div class="press-content"><div class="press-type">'+type+'</div><h3>'+title+'</h3><p>'+headline+'</p></div><div class="press-bottom"><span>'+date+'</span><span>'+(url?'Read article ↗':'Link needed')+'</span></div>';
+  return url?'<a class="press-tile" style="--tile-index:'+i+'" href="'+url+'" target="_blank" rel="noopener">'+body+'</a>':'<div class="press-tile no-link" style="--tile-index:'+i+'">'+body+'</div>';
+}).join('');
+
+// Load real article thumbnail images and page titles where the publisher permits metadata access.
+// The original article link remains the clickable destination; favicon is the graceful fallback.
+document.querySelectorAll('.press-thumb img[data-preview-url]').forEach(function(img){
+  var target=img.getAttribute('data-preview-url');
+  fetch('https://api.microlink.io/?url='+encodeURIComponent(target)+'&screenshot=false')
+    .then(function(r){if(!r.ok) throw new Error('metadata unavailable'); return r.json();})
+    .then(function(data){
+      var d=data&&data.data;
+      if(d&&d.image&&d.image.url) img.src=d.image.url;
+      if(d&&d.title){
+        var card=img.closest('.press-tile');
+        var heading=card&&card.querySelector('h3');
+        if(heading) heading.textContent=d.title;
+      }
+    }).catch(function(){ /* Keep the publisher favicon and authored headline as fallback. */ });
+});
+
+fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);
 document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
 document.getElementById('skills').innerHTML=["Graph neural networks","Trustworthy AI","Battery management","Power electronics","Embedded systems","Robotics","LLMs and NLP","TinyML","Smart grids","Python and MATLAB"].map(function(s){return '<span class="tag">'+s+'</span>'}).join('');
 document.getElementById('hl').innerHTML='<span>'+bd('meesho')+'Meesho: ranked 3rd among shopping apps in India</span><span>'+bd('gwr')+'Guinness World Records™ attempt</span><span>'+bd('ieee')+'IEEE Senior Member</span><span>2 Best Paper Awards</span><span>Patent technology licensed to 4 companies</span>';
