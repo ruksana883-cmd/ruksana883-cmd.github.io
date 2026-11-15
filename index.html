@@ -6,20 +6,20 @@
 <title>Shiek Ruksana – Portfolio</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-:root{--bg:#ffffff;--panel:#f7f7f9;--ink:#14171f;--muted:#5d6575;--line:#e5e7ee;--ac:#ee4b2b;--soft:#fff0ec;--dark:#14171f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#ffffff;--panel:#f7f7f9;--ink:#14171f;--muted:#5d6575;--line:#e5e7ee;--ac:#176B67;--soft:#E8F3F0;--dark:#142B35;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
 html{scroll-padding-top:70px;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 "Plus Jakarta Sans",system-ui,sans-serif}
 h1,h2,h3{margin:0;line-height:1.15;font-weight:800}
 a{color:var(--ac)}
-:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 nav{position:sticky;top:0;z-index:6;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line)}
 nav div{max-width:1140px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 18px;white-space:nowrap}
 nav a{padding:7px 14px;border-radius:99px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14.5px}
 nav a:hover{background:var(--soft);color:var(--ac)}
 .page{max-width:1140px;margin:0 auto;padding:26px 18px 40px;display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start}
 aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
-.ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#ff9d85,#fff,var(--ac))}
+.ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
 .ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
 .ph b{display:block;font-size:46px;color:#fff}
 aside h1{font-size:28px}
@@ -44,14 +44,14 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .stats b{display:block;font-size:30px;color:var(--ac)}
 .stats span{font-size:14px;color:var(--muted)}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{font-size:13px;font-weight:600;padding:4px 11px;border-radius:99px;background:var(--soft);color:#b5300f}
+.tag{font-size:13px;font-weight:600;padding:4px 11px;border-radius:99px;background:var(--soft);color:#14534F}
 .tag.hot{background:var(--ac);color:#fff}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .filters button{font:600 14.5px "Plus Jakarta Sans",sans-serif;padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
 .card{border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:box-shadow .2s,transform .2s}
-.card:hover{box-shadow:0 12px 28px rgba(20,23,31,.12);transform:translateY(-3px)}
+.card:hover{box-shadow:0 12px 28px rgba(20,54,58,.12);transform:translateY(-3px)}
 .shot{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;color:#fff;overflow:hidden;font-family:inherit}
 .shot .big{font-size:30px;font-weight:800;letter-spacing:-.01em;text-align:center;padding:0 16px;opacity:.95}
 .shot svg.lg{width:120px;fill:#fff;opacity:.95}
@@ -87,12 +87,19 @@ footer{margin-top:30px;background:var(--dark);color:#fff;border-radius:22px;padd
 footer h2{font-size:30px;margin-bottom:8px}
 footer p{color:#c8cdda;max-width:560px}
 dialog{border:0;border-radius:18px;background:#fff;color:var(--ink);padding:0;width:min(760px,94vw)}
-dialog::backdrop{background:rgba(20,23,31,.75)}
+dialog::backdrop{background:rgba(12,31,38,.78)}
 .vh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-weight:800}
 .vh button{border:0;background:var(--ink);color:#fff;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer}
 .vb{aspect-ratio:16/9;background:#000;display:grid;place-items:center;text-align:center;padding:20px;color:#d5dbe6}
 .vb video{width:100%;height:100%}
 .vf{padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap}
+
+.media-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;padding:12px 16px 0}
+.media-gallery img,.media-gallery video{width:100%;max-height:190px;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:#e8f3f0}
+.media-upload{display:flex;align-items:center;gap:8px;margin:10px 16px 0;padding:10px 12px;border:1px dashed #176B67;border-radius:12px;background:#E8F3F0;color:#14534F;text-decoration:none;font-size:13px;font-weight:700}
+.media-upload:hover{background:#d9ebe6}
+.media-upload small{display:block;font-weight:500;opacity:.8}
+
 @media (max-width:860px){.page{grid-template-columns:1fr}aside{position:static}}
 @media (max-width:520px){ul.rows li{flex-wrap:wrap}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
@@ -186,7 +193,7 @@ function fb(i){i.parentNode.outerHTML=tb(i.getAttribute('data-k'))}
 /* Logo links: each brand's own website domain. When the page is hosted where images may load (GitHub Pages), the logo shows; otherwise the colored badge shows. Change a domain to change its logo. */
 var DOM={gwr:'guinnessworldrecords.com',ibr:'indiabookofrecords.in',abr:'asiabookofrecords.com',msme:'msme.gov.in',meity:'meity.gov.in',neurips:'neurips.cc',isca:'isca-speech.org',laccei:'laccei.org',sae:'sae.org',brown:'brown.edu',jhu:'jhu.edu',bu:'bu.edu',drexel:'drexel.edu',nu:'northeastern.edu',nyu:'nyu.edu',meesho:'meesho.com',li:'linkedin.com',vasavi:'vasavi.ac.in',jps:'imanagerpublications.com'};
 var BG={ieee:'linear-gradient(135deg,#00629B,#003a5c)',sae:'linear-gradient(135deg,#1c3f94,#0f244f)',neurips:'linear-gradient(135deg,#6a3fb5,#37206b)',jps:'linear-gradient(135deg,#455a64,#1f2a30)',play:'linear-gradient(135deg,#414141,#161616)',meesho:'linear-gradient(135deg,#9f2089,#5c1250)',msme:'linear-gradient(135deg,#e65100,#a33a00)'};
-var DEF='linear-gradient(135deg,#2b3142,#14171f)';
+var DEF='linear-gradient(135deg,#285B5A,#142B35)';
 function wm(k){var v=SVG[k];return v?'<svg class="wm" viewBox="'+v[0]+'"><path d="'+v[1]+'"/></svg>':''}
 
 /* [brand, title, category, date, description, stack, tags, links] */
@@ -233,10 +240,38 @@ document.getElementById('foot').innerHTML='<a class="p" href="mailto:ruksana883@
 var cats=['All'].concat(P.map(function(p){return p[2]}).filter(function(c,i,a){return a.indexOf(c)===i})),cur='All';
 var PLAY='<svg viewBox="0 0 24 24" fill="#14171f"><path d="M6 3l15 9-15 9z"/></svg>';
 function art(p){var k=p[0],v=SVG[k];if(v)return '<svg class="lg" viewBox="'+v[0]+'"><path d="'+v[1]+'"/></svg>';return '<span class="big">'+(TXT[k]?TXT[k][0]:p[1])+'</span>'}
+var REPO_UPLOAD='https://github.com/ruksana883-cmd/ruksana883-cmd.github.io/upload/main/';
+var REPO_RAW='https://raw.githubusercontent.com/ruksana883-cmd/ruksana883-cmd.github.io/main/';
+var MEDIA_SLUGS=['netless-library','healthband','neural-volt-bms','100-faces-bot','mimi-companion-robot','cubesat-prototype','nova-q','biodegradable-battery','hand-wave-robot','swarm-sar'];
+function mediaUploadLink(i){
+  var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
+  return REPO_UPLOAD+'media/'+slug;
+}
+async function fileExists(url){
+  try{var r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok;}catch(e){return false;}
+}
+async function mountProjectMedia(){
+  var cards=document.querySelectorAll('[data-project-media]');
+  for(var card of cards){
+    var i=Number(card.getAttribute('data-project-media'));
+    var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
+    var gallery=card.querySelector('.media-gallery');
+    var files=['cover.jpg','photo-2.jpg','photo-3.jpg','photo-4.jpg','photo-5.jpg'];
+    var found=[];
+    for(var f of files){var url=REPO_RAW+'media/'+slug+'/'+f;if(await fileExists(url))found.push({type:'image',url:url});}
+    var videoUrl=REPO_RAW+'media/'+slug+'/demo.mp4';
+    if(await fileExists(videoUrl))found.push({type:'video',url:videoUrl});
+    if(found.length){
+      gallery.innerHTML=found.map(function(m){return m.type==='video'?'<video controls playsinline preload="metadata" src="'+m.url+'"></video>':'<img loading="lazy" src="'+m.url+'" alt="Project photograph">';}).join('');
+      var upload=card.querySelector('.media-upload');if(upload)upload.remove();
+    }
+  }
+}
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Opens secure GitHub upload · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
 function openV(i){var p=P[i],src=VIDEOS[p[1]];document.getElementById('vt').textContent=p[1];
