@@ -43,25 +43,38 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .wie-preview-copy p{margin:0;color:var(--muted);font-size:14.5px}
 .wie-preview-cta{display:inline-flex;align-items:center;gap:8px;margin-top:5px;font-weight:800;color:var(--ac)}
 
-.press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:26px auto 0;max-width:1120px;align-items:stretch}
-.press-tile{position:relative;display:flex;flex-direction:column;min-width:0;aspect-ratio:1/1.04;overflow:hidden;padding:0;border:1px solid #dce5e4;border-radius:16px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 5px 18px rgba(20,43,53,.055);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:pressRise .5s both;animation-delay:calc(var(--tile-index,0)*25ms)}
+.press-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:26px auto 0;max-width:1120px;align-items:stretch}
+.press-tile{position:relative;display:flex;flex-direction:column;min-width:0;min-height:390px;overflow:hidden;padding:0;border:1px solid #dce5e4;border-radius:18px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 7px 22px rgba(20,43,53,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:pressRise .5s both;animation-delay:calc(var(--tile-index,0)*20ms)}
 .press-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,43,53,.12);border-color:var(--ac)}
-.press-tile:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
-.press-thumb{height:43%;flex:0 0 43%;position:relative;overflow:hidden;background:linear-gradient(135deg,#e8f0ef,#d9e5e4);border-bottom:1px solid #e5eceb;display:grid;place-items:center}
-.press-thumb img{width:100%;height:100%;display:none;object-fit:cover;transition:transform .4s ease}
-.press-tile:hover .press-thumb img{transform:scale(1.035)}
-.press-thumb .thumb-fallback{font-size:25px;font-weight:800;letter-spacing:.08em;color:#55716f}
-.press-body{padding:15px 17px 14px;display:flex;flex:1;min-height:0;flex-direction:column}
-.press-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.press-thumb{height:158px;flex:0 0 158px;position:relative;overflow:hidden;background:linear-gradient(135deg,#e8f0ef,#d9e5e4);border-bottom:1px solid #e5eceb;display:grid;place-items:center}
+.press-brand{display:flex;align-items:center;justify-content:center;gap:12px;color:#55716f;font-size:20px;font-weight:800;letter-spacing:.07em;text-align:center;padding:18px}
+.press-brand .brand-logo{width:34px;height:34px;object-fit:contain;border-radius:8px}
+.press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.press-body{padding:17px 18px 16px;display:flex;flex:1;min-height:220px;flex-direction:column}
+.press-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .press-number{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
-.press-mark{display:grid;place-items:center;min-width:28px;height:25px;padding:0 7px;border-radius:7px;background:#edf4f2;color:#28635f;font-size:9px;font-weight:800;letter-spacing:.04em}
-.press-type{font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#56807b;line-height:1.35;margin-bottom:5px}
-.press-tile h3{font-size:16px;line-height:1.22;margin:0 0 5px;font-weight:750;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.press-tile p{font-size:11px;line-height:1.4;color:var(--muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.press-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:10px;font-size:10px;font-weight:750;color:var(--ac)}
-.press-bottom span:last-child{font-size:11px;white-space:nowrap}
-.press-tile.no-link{background:#fafcfc;cursor:default}
-.press-tile.no-link:hover{transform:none;box-shadow:0 5px 18px rgba(20,43,53,.055)}
+.press-mark{display:grid;place-items:center;min-width:30px;height:26px;padding:0 8px;border-radius:8px;background:#edf4f2;color:#28635f;font-size:9px;font-weight:800;letter-spacing:.04em}
+.press-type{font-size:10px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#56807b;line-height:1.45;margin-bottom:8px}
+.press-tile h3{font-size:17px;line-height:1.28;margin:0 0 8px;font-weight:750;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.press-tile p{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 12px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.press-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px;border-top:1px solid #edf1f0;font-size:11px;font-weight:750;color:var(--ac)}
+.press-bottom span:last-child{font-size:11px}
+.open-feature{border:0;border-radius:999px;padding:11px 17px;background:var(--ac);color:#fff;font:700 11px inherit;cursor:pointer;box-shadow:0 4px 12px rgba(20,110,105,.18);animation:featurePulse 2.8s ease-in-out infinite;white-space:nowrap}
+.open-feature:hover{transform:translateY(-1px);filter:brightness(1.06)}
+@keyframes featurePulse{0%,100%{box-shadow:0 0 0 0 rgba(20,110,105,.2)}50%{box-shadow:0 0 0 7px rgba(20,110,105,0)}}
+.press-upload-area{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:12px;border-top:1px solid #edf1f0}
+.press-upload-label{display:inline-flex;align-items:center;justify-content:center;border:1px dashed #6b9b96;border-radius:999px;padding:9px 14px;color:#28635f;background:#f4f9f8;font-size:11px;font-weight:750;cursor:pointer}
+.press-upload-label:hover{background:#eaf4f2}
+.press-upload-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.press-upload-name{font-size:10px;color:#56716f;max-width:100%;overflow-wrap:anywhere}
+.press-file-preview{display:none;margin-top:12px;border:1px solid #e2eae8;border-radius:12px;overflow:hidden;background:#f7faf9}
+.press-file-preview.active{display:block}
+.press-file-preview iframe{display:block;width:100%;height:280px;border:0;background:#fff}
+.press-file-preview img,.press-file-preview video{display:block;width:100%;max-height:280px;object-fit:contain;background:#edf2f1}
+.press-file-open{display:inline-block;margin:9px 12px 12px;color:#176f6a;font-size:11px;font-weight:700}
+.press-tile.no-link{background:#fff;cursor:default}
+@media(max-width:900px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.press-grid{grid-template-columns:1fr;gap:16px}.press-tile{min-height:360px}.press-thumb{height:145px;flex-basis:145px}}
 @keyframes pressRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.press-tile{animation:none;transition:none}}
 @media(max-width:760px){.press-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
@@ -392,37 +405,61 @@ function fill(id,arr){document.getElementById(id).innerHTML=arr.map(row).join(''
 document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
   var title=item[0],type=item[1],date=item[2],headline=item[3],url=item[4],mark=item[5];
   var domains={
-    "IEEE Women in Engineering":"wie.ieee.org",
-    "IEEE WIE Member Highlight":"wie.ieee.org",
-    "MIT Technology Review":"technologyreview.com",
-    "IEEE Spectrum":"spectrum.ieee.org",
-    "Capital Information":"capitalinformation.net",
-    "Sakshi":"sakshi.com",
-    "Mudra News":"mudranews.in",
-    "ABN Andhra Jyothi":"andhrajyothy.com",
-    "Disha Daily":"dishadaily.com"
+    "IEEE Women in Engineering":"wie.ieee.org","IEEE WIE Member Highlight":"wie.ieee.org",
+    "MIT Technology Review":"technologyreview.com","IEEE Spectrum":"spectrum.ieee.org",
+    "Capital Information":"capitalinformation.net","Sakshi":"sakshi.com",
+    "Mudra News":"mudranews.in","ABN Andhra Jyothi":"andhrajyothy.com","Disha Daily":"dishadaily.com"
   };
   var domain=domains[title]||"";
-  var brand=domain?'<img class="brand-logo" loading="lazy" alt="'+title+' logo" src="https://www.google.com/s2/favicons?domain='+domain+'&sz=128">':'';
-  var thumb='<div class="press-thumb"><div class="press-brand">'+brand+'<span>'+title+'</span></div>'+(url?'<img class="article-image" loading="lazy" alt="'+title+' article image" data-preview-url="'+url+'">':'')+'</div>';
-  var body='<div class="press-body"><div class="press-meta"><span class="press-number">MEDIA FEATURE '+String(i+1).padStart(2,'0')+'</span><span class="press-mark">'+mark+'</span></div><div class="press-type">'+type+'</div><h3>'+title+'</h3><p>'+headline+'</p><div class="press-bottom"><span>'+date+'</span><span></span></div></div>';
-  return url?'<a class="press-tile" style="--tile-index:'+i+'" href="'+url+'" target="_blank" rel="noopener">'+thumb+body+'</a>':'<div class="press-tile no-link" style="--tile-index:'+i+'">'+thumb+body+'</div>';
+  var brand=domain?'<img class="brand-logo" loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+domain+'&sz=128">':'';
+  var thumb='<div class="press-thumb"><div class="press-brand">'+brand+'<span>'+title+'</span></div>'+(url?'<img class="article-image" loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'">':'')+'</div>';
+  var action=url
+    ? '<button class="open-feature" type="button" data-open-url="'+url.replace(/&/g,'&amp;')+'">Open feature ↗</button>'
+    : '<div class="press-upload-area"><label class="press-upload-label" for="press-file-'+i+'">＋ Upload PDF / file</label><input class="press-upload-input" id="press-file-'+i+'" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.mp4,.webm,.doc,.docx,.ppt,.pptx" data-press-upload><span class="press-upload-name" aria-live="polite"></span></div><div class="press-file-preview"></div>';
+  var body='<div class="press-body"><div class="press-meta"><span class="press-number">MEDIA FEATURE '+String(i+1).padStart(2,'0')+'</span><span class="press-mark">'+mark+'</span></div><div class="press-type">'+type+'</div><h3>'+title+'</h3><p>'+headline+'</p><div class="press-bottom"><span>'+date+'</span></div>'+action+'</div>';
+  return '<article class="press-tile '+(url?'has-link':'no-link')+'" style="--tile-index:'+i+'">'+thumb+body+'</article>';
 }).join('');
 
-// Article images are optional; when unavailable, keep the publisher identity preview.
-// Never replace the user's supplied headline with an error page title.
+// Open linked features from their animated round buttons.
+document.querySelectorAll('.open-feature').forEach(function(btn){
+  btn.addEventListener('click',function(){window.open(btn.getAttribute('data-open-url'),'_blank','noopener');});
+});
+
+// For entries without an external link, let the owner attach a local PDF or media file
+// and preview it directly inside that card. The selected file is held in this browser session.
+document.querySelectorAll('[data-press-upload]').forEach(function(input){
+  input.addEventListener('change',function(){
+    var file=input.files&&input.files[0];
+    if(!file) return;
+    var card=input.closest('.press-tile');
+    var preview=card.querySelector('.press-file-preview');
+    var name=card.querySelector('.press-upload-name');
+    var old=preview.getAttribute('data-object-url');
+    if(old) URL.revokeObjectURL(old);
+    var objectUrl=URL.createObjectURL(file);
+    preview.setAttribute('data-object-url',objectUrl);
+    name.textContent=file.name;
+    var type=file.type||'';
+    if(type==='application/pdf'||file.name.toLowerCase().endsWith('.pdf')){
+      preview.innerHTML='<iframe title="PDF preview: '+file.name.replace(/"/g,'&quot;')+'" src="'+objectUrl+'"></iframe><a class="press-file-open" href="'+objectUrl+'" target="_blank" rel="noopener">Open PDF in new tab ↗</a>';
+    } else if(type.indexOf('image/')===0){
+      preview.innerHTML='<img alt="Preview of '+file.name.replace(/"/g,'&quot;')+'" src="'+objectUrl+'"><a class="press-file-open" href="'+objectUrl+'" target="_blank" rel="noopener">Open file ↗</a>';
+    } else if(type.indexOf('video/')===0){
+      preview.innerHTML='<video controls src="'+objectUrl+'"></video><a class="press-file-open" href="'+objectUrl+'" target="_blank" rel="noopener">Open file ↗</a>';
+    } else {
+      preview.innerHTML='<a class="press-file-open" href="'+objectUrl+'" target="_blank" rel="noopener">Preview / open '+file.name.replace(/</g,'&lt;')+' ↗</a>';
+    }
+    preview.classList.add('active');
+  });
+});
+
+// Article images are optional; retain the publisher branding if a site blocks metadata previews.
 document.querySelectorAll('.press-thumb img.article-image[data-preview-url]').forEach(function(img){
   var target=img.getAttribute('data-preview-url');
   fetch('https://api.microlink.io/?url='+encodeURIComponent(target)+'&screenshot=false')
     .then(function(r){if(!r.ok) throw new Error('preview unavailable'); return r.json();})
-    .then(function(data){
-      var d=data&&data.data;
-      if(d&&d.image&&d.image.url){
-        img.src=d.image.url;
-        img.onload=function(){img.classList.add('loaded');};
-        img.onerror=function(){img.remove();};
-      } else { img.remove(); }
-    }).catch(function(){img.remove();});
+    .then(function(data){var d=data&&data.data;if(d&&d.image&&d.image.url){img.src=d.image.url;}else{img.remove();}})
+    .catch(function(){img.remove();});
 });
 
 fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);
