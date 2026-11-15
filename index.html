@@ -55,7 +55,8 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .press-brand.special-ieee strong{font-size:27px;line-height:1;font-style:italic}
 .press-brand.special-ieee small{font-size:10px;letter-spacing:.2em;font-weight:800;color:#236c91}
 .press-brand .brand-logo{width:34px;height:34px;object-fit:contain;border-radius:8px}
-.press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.press-brand.special-mit .mit-logo{width:170px;height:82px;max-width:82%;object-fit:contain;border-radius:0;margin-bottom:4px}
+.press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:2;background:#e8f0ef}
 .press-body{padding:17px 18px 16px;display:flex;flex:1;min-height:220px;flex-direction:column}
 .press-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
 .press-number{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ac)}
@@ -419,9 +420,9 @@ document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
   var domain=domains[title]||"";
   var brand=domain?'<img class="brand-logo" loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+domain+'&sz=128">':'';
   var brandMarkup=title==='MIT Technology Review'
-    ? '<div class="press-brand special-mit"><strong>MIT TR</strong><small>TECHNOLOGY REVIEW</small></div>'
+    ? '<div class="press-brand special-mit"><img class="brand-logo mit-logo" loading="lazy" alt="MIT Technology Review logo" src="https://upload.wikimedia.org/wikipedia/commons/8/86/MIT_Technology_Review_modern_logo.svg"><strong>MIT</strong><small>TECHNOLOGY REVIEW</small></div>'
     : title==='IEEE Spectrum'
-      ? '<div class="press-brand special-ieee"><strong>IEEE SPECTRUM</strong><small>THE IEEE VOICE OF ENGINEERING</small></div>'
+      ? '<div class="press-brand special-ieee"><img class="brand-logo" loading="lazy" alt="IEEE Spectrum logo" src="https://www.google.com/s2/favicons?domain=spectrum.ieee.org&sz=256"><strong>IEEE SPECTRUM</strong><small>THE IEEE VOICE OF ENGINEERING</small></div>'
       : '<div class="press-brand">'+brand+'<span>'+title+'</span></div>';
   var thumb='<div class="press-thumb">'+brandMarkup+(url?'<img class="article-image" loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'">':'')+'</div>';
   var isEditorialPitch=(title==='MIT Technology Review'||title==='IEEE Spectrum');
@@ -466,13 +467,20 @@ document.querySelectorAll('[data-press-upload]').forEach(function(input){
   });
 });
 
-// Article images are optional; retain the publisher branding if a site blocks metadata previews.
+// Show a visual capture of the actual IEEE WIE article in the upper card preview.
+// The capture service renders the public article page; the original card button still opens IEEE directly.
 document.querySelectorAll('.press-thumb img.article-image[data-preview-url]').forEach(function(img){
   var target=img.getAttribute('data-preview-url');
-  fetch('https://api.microlink.io/?url='+encodeURIComponent(target)+'&screenshot=false')
-    .then(function(r){if(!r.ok) throw new Error('preview unavailable'); return r.json();})
-    .then(function(data){var d=data&&data.data;if(d&&d.image&&d.image.url){img.src=d.image.url;}else{img.remove();}})
-    .catch(function(){img.remove();});
+  img.src='https://image.thum.io/get/width/1000/crop/520/noanimate/'+target;
+  img.onload=function(){
+    var fallback=img.parentElement.querySelector('.press-brand');
+    if(fallback) fallback.style.display='none';
+  };
+  img.onerror=function(){
+    img.remove();
+    var fallback=img.parentElement.querySelector('.press-brand');
+    if(fallback) fallback.style.display='flex';
+  };
 });
 
 fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);
