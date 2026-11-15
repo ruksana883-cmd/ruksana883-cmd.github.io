@@ -97,6 +97,23 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .filters button{font:600 14.5px "Plus Jakarta Sans",sans-serif;padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+/* Project cards: prevent narrow-screen horizontal overflow */
+#pgrid{width:100%;min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));align-items:stretch}
+#pgrid .card{min-width:0;width:100%;max-width:100%}
+#pgrid .media-gallery{grid-template-columns:repeat(auto-fit,minmax(86px,1fr));min-width:0}
+#pgrid .media-gallery .media-thumb{position:relative;display:block;width:100%;min-width:0;aspect-ratio:4/3;padding:0;border:0;border-radius:10px;overflow:hidden;background:#e8f3f0;cursor:pointer}
+#pgrid .media-gallery .media-thumb img,#pgrid .media-gallery .media-thumb video{display:block;width:100%;height:100%;max-height:none;aspect-ratio:auto;object-fit:cover;border-radius:0}
+#pgrid .media-gallery .media-thumb:after{content:'▶';position:absolute;right:7px;bottom:7px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:rgba(12,31,38,.82);color:#fff;font-size:11px;pointer-events:none}
+@media(max-width:700px){
+  .page{display:block;width:100%;max-width:100%;padding:16px 12px 32px;overflow-x:clip}
+  main{min-width:0;width:100%}
+  #pgrid{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:16px}
+  #pgrid .card{width:100%;max-width:100%}
+  #pgrid .shot{aspect-ratio:16/8;min-height:150px}
+  #filters{max-width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}
+  #filters button{flex:0 0 auto}
+}
+
 .card{border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:box-shadow .2s,transform .2s}
 .card:hover{box-shadow:0 12px 28px rgba(20,54,58,.12);transform:translateY(-3px)}
 .shot{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;color:#fff;overflow:hidden;font-family:inherit}
@@ -467,10 +484,11 @@ async function listMediaFiles(folder){
 function mediaMarkup(item){
   var url=item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
   var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
-  if(/\.(mp4|webm|mov|m4v)$/i.test(item.name)){
-    return '<video controls playsinline preload="metadata" src="'+safeUrl+'"></video>';
-  }
-  return '<img loading="lazy" src="'+safeUrl+'" alt="Uploaded portfolio media">';
+  var isVideo=/\.(mp4|webm|mov|m4v)$/i.test(item.name);
+  var preview=isVideo
+    ? '<video muted playsinline preload="metadata" src="'+safeUrl+'#t=0.2"></video>'
+    : '<img loading="lazy" src="'+safeUrl+'" alt="Project photo">';
+  return '<button class="media-thumb" type="button" data-media-url="'+safeUrl+'" data-media-type="'+(isVideo?'video':'image')+'" aria-label="Open '+(isVideo?'video':'photo')+' preview">'+preview+'</button>';
 }
 async function mountProfilePhoto(){
   var files=await listMediaFiles('media/profile');
@@ -506,8 +524,22 @@ function openV(i){var p=P[i],src=VIDEOS[p[1]];document.getElementById('vt').text
 vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Video coming soon.<br>Watch the demo using the link below.</div>';
 document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
 vd.showModal()}
+function openProjectMedia(url,type,title){
+  document.getElementById('vt').textContent=title||'Project media';
+  vb.innerHTML=type==='video'
+    ? '<video controls autoplay playsinline src="'+url+'"></video>'
+    : '<img alt="Project media preview" style="display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain" src="'+url+'">';
+  document.getElementById('vf').innerHTML='';
+  vd.showModal();
+}
 function closeV(){vb.innerHTML='';vd.close()}
-document.addEventListener('click',function(e){var c=e.target.closest('[data-c]'),v=e.target.closest('[data-v]');if(c){cur=c.getAttribute('data-c');draw()}else if(v){openV(+v.getAttribute('data-v'))}else if(e.target===vd){closeV()}});
+document.addEventListener('click',function(e){
+  var c=e.target.closest('[data-c]'),m=e.target.closest('[data-media-url]'),v=e.target.closest('[data-v]');
+  if(c){cur=c.getAttribute('data-c');draw()}
+  else if(m){var card=m.closest('.card');openProjectMedia(m.getAttribute('data-media-url'),m.getAttribute('data-media-type'),card?card.querySelector('h3').textContent:'Project media')}
+  else if(v){openV(+v.getAttribute('data-v'))}
+  else if(e.target===vd){closeV()}
+});
 document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
 draw();
 mountProfilePhoto();
