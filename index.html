@@ -98,14 +98,20 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
 /* Project cards: prevent narrow-screen horizontal overflow */
-#pgrid{width:100%;min-width:0;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));align-items:stretch}
-#pgrid .card{min-width:0;width:100%;max-width:100%}
-#pgrid .media-gallery{grid-template-columns:repeat(auto-fit,minmax(86px,1fr));min-width:0}
+#pgrid{display:grid;width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+#pgrid .card{min-width:0;width:100%;max-width:100%;overflow:hidden}
+#pgrid .media-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;padding:10px 14px 0;min-width:0}
+#pgrid .media-gallery:empty{display:none}
 #pgrid .media-gallery .media-thumb{position:relative;display:block;width:100%;min-width:0;aspect-ratio:4/3;padding:0;border:0;border-radius:10px;overflow:hidden;background:#e8f3f0;cursor:pointer}
-#pgrid .media-gallery .media-thumb img,#pgrid .media-gallery .media-thumb video{display:block;width:100%;height:100%;max-height:none;aspect-ratio:auto;object-fit:cover;border-radius:0}
+#pgrid .media-gallery .media-thumb img,#pgrid .media-gallery .media-thumb video{display:block;width:100%;height:100%;max-height:none;object-fit:cover;border-radius:0;pointer-events:none}
 #pgrid .media-gallery .media-thumb:after{content:'▶';position:absolute;right:7px;bottom:7px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:rgba(12,31,38,.82);color:#fff;font-size:11px;pointer-events:none}
+#profileFrame{width:170px;height:170px;overflow:hidden;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
+#profileFrame>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;border:5px solid var(--dark);background:#fff}
+#profileFrame>div{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;background:#262b38;color:#b9bfce}
+@media(max-width:900px){.page{grid-template-columns:260px minmax(0,1fr);gap:22px;padding-left:14px;padding-right:14px}#pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){
   .page{display:block;width:100%;max-width:100%;padding:16px 12px 32px;overflow-x:clip}
+  aside{position:relative;top:auto;margin-bottom:24px}
   main{min-width:0;width:100%}
   #pgrid{display:grid;grid-template-columns:minmax(0,1fr)!important;gap:16px}
   #pgrid .card{width:100%;max-width:100%}
@@ -486,7 +492,7 @@ function mediaMarkup(item){
   var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   var isVideo=/\.(mp4|webm|mov|m4v)$/i.test(item.name);
   var preview=isVideo
-    ? '<video muted playsinline preload="metadata" src="'+safeUrl+'#t=0.2"></video>'
+    ? '<video muted playsinline preload="metadata" tabindex="-1" src="'+safeUrl+'#t=0.2"></video>'
     : '<img loading="lazy" src="'+safeUrl+'" alt="Project photo">';
   return '<button class="media-thumb" type="button" data-media-url="'+safeUrl+'" data-media-type="'+(isVideo?'video':'image')+'" aria-label="Open '+(isVideo?'video':'photo')+' preview">'+preview+'</button>';
 }
@@ -495,7 +501,10 @@ async function mountProfilePhoto(){
   var photo=files.find(function(item){return /\.(png|jpe?g|gif|webp|avif)$/i.test(item.name);});
   if(photo){
     var frame=document.getElementById('profileFrame');
-    frame.innerHTML=mediaMarkup(photo);
+    var url=photo.download_url || (REPO_RAW+photo.path.split('/').map(encodeURIComponent).join('/'));
+    var img=document.createElement('img');
+    img.src=url; img.alt='Profile photo'; img.loading='eager';
+    frame.innerHTML=''; frame.appendChild(img);
     var upload=document.getElementById('profileUpload');
     if(upload)upload.remove();
   }
