@@ -139,16 +139,18 @@ aside .role{color:#c8cdda;margin:8px 0 18px;font-size:15px}
 .hl{background:var(--ac);color:#fff;border-radius:16px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px 24px;font-weight:700;font-size:15px}
 .hl span{display:flex;gap:10px;align-items:center}
 .hl .bd{min-width:36px;height:36px;border-radius:9px;font-size:10px;border:2px solid #fff}
-/* Signature highlights: prominent branded achievements directly below the cover */
-#hl.hl{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;padding:0!important;margin:0 0 28px!important;background:transparent!important;color:var(--ink)!important;align-items:stretch!important}
-#hl.hl .hl-item{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;min-width:0!important;min-height:126px!important;padding:15px 14px!important;border:1px solid var(--line)!important;border-radius:16px!important;background:linear-gradient(145deg,#fff,#f3f8f7)!important;box-shadow:0 5px 16px rgba(20,43,53,.055)!important;color:var(--ink)!important;font-size:12px!important;font-weight:700!important;line-height:1.35!important}
-#hl.hl .hl-brand{display:flex!important;align-items:center!important;justify-content:center!important;width:48px!important;height:42px!important;padding:5px!important;border-radius:11px!important;background:#fff!important;border:1px solid #e4ebea!important;overflow:hidden!important}
-#hl.hl .hl-brand img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important}
-#hl.hl .hl-brand b{font-size:10px!important;letter-spacing:.02em!important;color:#176b67!important}
-#hl.hl .hl-caption{display:block!important;max-width:100%!important;color:#253a3d!important}
-#hl.hl .hl-caption small{display:block!important;color:#71817f!important;font-size:10px!important;font-weight:600!important;margin-top:3px!important}
-@media(max-width:980px){#hl.hl{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:560px){#hl.hl{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}#hl.hl .hl-item{min-height:112px!important;padding:12px!important}}
+
+/* Recovered signature highlights — isolated styles; do not alter other sections */
+#hl.hl{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px;
+  padding:0;margin:0 0 24px;background:transparent;color:var(--ink);align-items:stretch}
+#hl.hl .highlight-card{display:flex;align-items:center;gap:11px;min-height:82px;padding:13px;
+  border:1px solid var(--line);border-radius:15px;background:var(--panel);
+  box-shadow:0 4px 14px rgba(20,43,53,.05);font-size:12px;font-weight:700;line-height:1.35}
+#hl.hl .highlight-logo{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;
+  border-radius:10px;background:#fff;border:1px solid var(--line);overflow:hidden}
+#hl.hl .highlight-logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+#hl.hl .highlight-logo b{font-size:10px;color:var(--ac)}
+#hl.hl .highlight-card small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:3px}
 
 section{padding:34px 0 8px}
 h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
@@ -558,17 +560,20 @@ fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);
 document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
 document.getElementById('skills').innerHTML=["Graph neural networks","Trustworthy AI","Battery management","Power electronics","Embedded systems","Robotics","LLMs and NLP","TinyML","Smart grids","Python and MATLAB"].map(function(s){return '<span class="tag">'+s+'</span>'}).join('');
 document.getElementById('hl').innerHTML=[
-  ['meesho','Meesho','100 Faces Bot listed on Meesho'],
-  ['gwr','Guinness World Records','Record attempt · Largest Electrical Engineering Lesson'],
-  ['ibr','India Book of Records','Achiever recognition · Pocket University'],
-  ['abr','Asia Book of Records','Application · Offline digital library'],
-  ['ieee','IEEE Senior Member','Professional recognition · 2026'],
-  ['limca','Limca Book of Records','Proposal · Portable digital library'],
-  ['ieee','Best Paper Awards','IEEE ESCI 2026 · ICPCIEE 2024'],
-  ['','Patent & innovation','Technology licensing and product development']
+  ['meesho','Meesho','100 Faces Bot marketplace listing','meesho.com'],
+  ['gwr','Guinness World Records','Record attempt submission','guinnessworldrecords.com'],
+  ['ibr','India Book of Records','Record / recognition','indiabookofrecords.in'],
+  ['abr','Asia Book of Records','Record application','asiabookofrecords.com'],
+  ['ieee','IEEE','Senior Member · Best Paper Awards','ieee.org'],
+  ['limca','Limca Book of Records','Record proposal',''],
+  ['','Best Paper Awards','IEEE ESCI 2026 · ICPCIEE 2024',''],
+  ['','Patent & innovation','Patent and product development','']
 ].map(function(x){
-  var logo=x[0]&&DOM[x[0]]?'<img src="https://www.google.com/s2/favicons?domain='+DOM[x[0]]+'&sz=128" alt="'+x[1]+' logo" onerror="this.style.display=\'none\';this.parentNode.querySelector(\'b\').style.display=\'block\'"><b style="display:none">'+(TXT[x[0]]?TXT[x[0]][0]:x[1].slice(0,4))+'</b>':'<b>R&amp;I</b>';
-  return '<div class="hl-item"><span class="hl-brand">'+logo+'</span><span class="hl-caption">'+x[1]+'<small>'+x[2]+'</small></span></div>';
+  var fallback=x[1].slice(0,5).toUpperCase();
+  var logo=x[3]
+    ? '<img loading="lazy" src="https://www.google.com/s2/favicons?domain='+x[3]+'&sz=128" alt="'+x[1]+' logo" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><b style="display:none">'+fallback+'</b>'
+    : '<b>'+fallback+'</b>';
+  return '<div class="highlight-card"><span class="highlight-logo">'+logo+'</span><span>'+x[1]+'<small>'+x[2]+'</small></span></div>';
 }).join('');
 var side='<a class="p" href="'+CV+'">Download my CV</a><a href="'+LI+'">'+bd('li')+'LinkedIn</a><a href="'+GS+'">'+bd('scholar')+'Google Scholar</a><a href="https://netless-library.in">Netless Library website</a><a href="https://mimibuddy.store">Mimi robot store</a><a href="mailto:ruksana883@gmail.com">'+bd('gmail')+'ruksana883@gmail.com</a>';
 document.getElementById('side').innerHTML=side;
