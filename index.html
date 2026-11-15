@@ -247,15 +247,38 @@ function mediaUploadLink(i){
   var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
   return REPO_UPLOAD+'media/'+slug;
 }
-async function fileExists(url){
-  try{var r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok;}catch(e){return false;}
+async function listMediaFiles(folder){
+  // List every file in the matching GitHub folder; filenames do not matter.
+  var api='https://api.github.com/repos/ruksana883-cmd/ruksana883-cmd.github.io/contents/'+folder+'?ref=main';
+  try{
+    var response=await fetch(api,{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});
+    if(!response.ok)return [];
+    var items=await response.json();
+    if(!Array.isArray(items))return [];
+    return items.filter(function(item){
+      return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v)$/i.test(item.name);
+    }).sort(function(a,b){
+      // Prefer images first; then sort by filename for a predictable gallery.
+      var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
+      var bi=/\.(png|jpe?g|gif|webp|avif)$/i.test(b.name)?0:1;
+      return ai-bi || a.name.localeCompare(b.name);
+    });
+  }catch(e){return [];}
 }
-
+function mediaMarkup(item){
+  var url=item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
+  var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+  if(/\.(mp4|webm|mov|m4v)$/i.test(item.name)){
+    return '<video controls playsinline preload="metadata" src="'+safeUrl+'"></video>';
+  }
+  return '<img loading="lazy" src="'+safeUrl+'" alt="Uploaded portfolio media">';
+}
 async function mountProfilePhoto(){
-  var url=REPO_RAW+'media/profile/profile.jpg';
-  if(await fileExists(url)){
+  var files=await listMediaFiles('media/profile');
+  var photo=files.find(function(item){return /\.(png|jpe?g|gif|webp|avif)$/i.test(item.name);});
+  if(photo){
     var frame=document.getElementById('profileFrame');
-    frame.innerHTML='<img src="'+url+'?v='+Date.now()+'" alt="Shiek Ruksana profile photograph">';
+    frame.innerHTML=mediaMarkup(photo);
     var upload=document.getElementById('profileUpload');
     if(upload)upload.remove();
   }
@@ -266,13 +289,9 @@ async function mountProjectMedia(){
     var i=Number(card.getAttribute('data-project-media'));
     var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
     var gallery=card.querySelector('.media-gallery');
-    var files=['cover.jpg','photo-2.jpg','photo-3.jpg','photo-4.jpg','photo-5.jpg'];
-    var found=[];
-    for(var f of files){var url=REPO_RAW+'media/'+slug+'/'+f;if(await fileExists(url))found.push({type:'image',url:url});}
-    var videoUrl=REPO_RAW+'media/'+slug+'/demo.mp4';
-    if(await fileExists(videoUrl))found.push({type:'video',url:videoUrl});
-    if(found.length){
-      gallery.innerHTML=found.map(function(m){return m.type==='video'?'<video controls playsinline preload="metadata" src="'+m.url+'"></video>':'<img loading="lazy" src="'+m.url+'" alt="Project photograph">';}).join('');
+    var files=await listMediaFiles('media/'+slug);
+    if(files.length){
+      gallery.innerHTML=files.map(mediaMarkup).join('');
       var upload=card.querySelector('.media-upload');if(upload)upload.remove();
     }
   }
