@@ -47,7 +47,13 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 .press-tile{position:relative;display:flex;flex-direction:column;min-width:0;min-height:390px;overflow:hidden;padding:0;border:1px solid #dce5e4;border-radius:18px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 7px 22px rgba(20,43,53,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:pressRise .5s both;animation-delay:calc(var(--tile-index,0)*20ms)}
 .press-tile:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,43,53,.12);border-color:var(--ac)}
 .press-thumb{height:158px;flex:0 0 158px;position:relative;overflow:hidden;background:linear-gradient(135deg,#e8f0ef,#d9e5e4);border-bottom:1px solid #e5eceb;display:grid;place-items:center}
-.press-brand{display:flex;align-items:center;justify-content:center;gap:12px;color:#55716f;font-size:20px;font-weight:800;letter-spacing:.07em;text-align:center;padding:18px}
+.press-brand{display:flex;align-items:center;justify-content:center;gap:12px;color:#55716f;font-size:20px;font-weight:800;letter-spacing:.07em;text-align:center;padding:18px;position:relative;z-index:1;width:100%;height:100%}
+.press-brand.special-mit{background:linear-gradient(135deg,#f1f3f2,#dce5e3);color:#273b3a;flex-direction:column;gap:5px;letter-spacing:.12em}
+.press-brand.special-mit strong{font-size:25px;line-height:1}
+.press-brand.special-mit small{font-size:10px;letter-spacing:.22em;font-weight:800;color:#657d79}
+.press-brand.special-ieee{background:linear-gradient(135deg,#e8f2f7,#d5e5ec);color:#075b91;flex-direction:column;gap:4px;letter-spacing:.08em}
+.press-brand.special-ieee strong{font-size:27px;line-height:1;font-style:italic}
+.press-brand.special-ieee small{font-size:10px;letter-spacing:.2em;font-weight:800;color:#236c91}
 .press-brand .brand-logo{width:34px;height:34px;object-fit:contain;border-radius:8px}
 .press-thumb img.article-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .press-body{padding:17px 18px 16px;display:flex;flex:1;min-height:220px;flex-direction:column}
@@ -412,9 +418,16 @@ document.getElementById('pressGrid').innerHTML=PRESS.map(function(item,i){
   };
   var domain=domains[title]||"";
   var brand=domain?'<img class="brand-logo" loading="lazy" alt="" src="https://www.google.com/s2/favicons?domain='+domain+'&sz=128">':'';
-  var thumb='<div class="press-thumb"><div class="press-brand">'+brand+'<span>'+title+'</span></div>'+(url?'<img class="article-image" loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'">':'')+'</div>';
+  var brandMarkup=title==='MIT Technology Review'
+    ? '<div class="press-brand special-mit"><strong>MIT TR</strong><small>TECHNOLOGY REVIEW</small></div>'
+    : title==='IEEE Spectrum'
+      ? '<div class="press-brand special-ieee"><strong>IEEE SPECTRUM</strong><small>THE IEEE VOICE OF ENGINEERING</small></div>'
+      : '<div class="press-brand">'+brand+'<span>'+title+'</span></div>';
+  var thumb='<div class="press-thumb">'+brandMarkup+(url?'<img class="article-image" loading="lazy" alt="'+title+' article preview" data-preview-url="'+url+'">':'')+'</div>';
+  var isEditorialPitch=(title==='MIT Technology Review'||title==='IEEE Spectrum');
   var action=url
     ? '<button class="open-feature" type="button" data-open-url="'+url.replace(/&/g,'&amp;')+'">Open feature ↗</button>'
+    : isEditorialPitch ? ''
     : '<div class="press-upload-area"><label class="press-upload-label" for="press-file-'+i+'">＋ Upload PDF / file</label><input class="press-upload-input" id="press-file-'+i+'" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.mp4,.webm,.doc,.docx,.ppt,.pptx" data-press-upload><span class="press-upload-name" aria-live="polite"></span></div><div class="press-file-preview"></div>';
   var body='<div class="press-body"><div class="press-meta"><span class="press-number">MEDIA FEATURE '+String(i+1).padStart(2,'0')+'</span><span class="press-mark">'+mark+'</span></div><div class="press-type">'+type+'</div><h3>'+title+'</h3><p>'+headline+'</p><div class="press-bottom"><span>'+date+'</span></div>'+action+'</div>';
   return '<article class="press-tile '+(url?'has-link':'no-link')+'" style="--tile-index:'+i+'">'+thumb+body+'</article>';
