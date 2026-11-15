@@ -21,7 +21,7 @@ nav a:hover{background:var(--soft);color:var(--ac)}
 aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
 .ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
 .ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
-.ph b{display:block;font-size:46px;color:#fff}
+.ph b{display:block;font-size:46px;color:#fff}.ph img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.profile-upload{display:inline-flex;margin:0 auto 16px;padding:8px 13px;border:1px dashed #9ccbc2;border-radius:10px;color:#d9f2ec;text-decoration:none;font-size:12px;font-weight:700}.profile-upload:hover{background:#ffffff16}
 aside h1{font-size:28px}
 aside .role{color:#c8cdda;margin:8px 0 18px;font-size:15px}
 .cl{display:grid;gap:8px;text-align:left}
@@ -112,7 +112,7 @@ dialog::backdrop{background:rgba(12,31,38,.78)}
 
 <div class="page">
 <aside>
-<div class="ph"><div><span><b>SR</b>Add your photo</span></div></div>
+<div class="ph" id="profileFrame"><div><span><b>SR</b>Add your photo</span></div></div><a class="profile-upload" id="profileUpload" href="https://github.com/ruksana883-cmd/ruksana883-cmd.github.io/upload/main/media/profile" target="_blank" rel="noopener">＋ Upload profile photo</a>
 <h1>Shiek Ruksana</h1>
 <p class="role">Assistant Professor · AI researcher · Hardware innovator<br>Vasavi College of Engineering, Hyderabad</p>
 <div class="cl" id="side"></div>
@@ -250,6 +250,16 @@ function mediaUploadLink(i){
 async function fileExists(url){
   try{var r=await fetch(url,{method:'HEAD',cache:'no-store'});return r.ok;}catch(e){return false;}
 }
+
+async function mountProfilePhoto(){
+  var url=REPO_RAW+'media/profile/profile.jpg';
+  if(await fileExists(url)){
+    var frame=document.getElementById('profileFrame');
+    frame.innerHTML='<img src="'+url+'?v='+Date.now()+'" alt="Shiek Ruksana profile photograph">';
+    var upload=document.getElementById('profileUpload');
+    if(upload)upload.remove();
+  }
+}
 async function mountProjectMedia(){
   var cards=document.querySelectorAll('[data-project-media]');
   for(var card of cards){
@@ -282,6 +292,7 @@ function closeV(){vb.innerHTML='';vd.close()}
 document.addEventListener('click',function(e){var c=e.target.closest('[data-c]'),v=e.target.closest('[data-v]');if(c){cur=c.getAttribute('data-c');draw()}else if(v){openV(+v.getAttribute('data-v'))}else if(e.target===vd){closeV()}});
 document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
 draw();
+mountProfilePhoto();
 </script>
 </body>
 </html>
