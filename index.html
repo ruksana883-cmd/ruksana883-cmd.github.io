@@ -98,6 +98,16 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
 /* Project cards: prevent narrow-screen horizontal overflow */
+.project-link-previews{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px;margin-top:13px}
+.project-link-preview{display:flex;align-items:center;gap:9px;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:11px;background:#f8fbfa;color:var(--ink);text-decoration:none;transition:transform .18s,border-color .18s}
+.project-link-preview:hover{transform:translateY(-2px);border-color:var(--ac)}
+.project-link-icon{width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ac);overflow:hidden}
+.project-link-icon img{width:22px;height:22px;object-fit:contain}
+.project-link-preview span:nth-child(2){display:block;min-width:0;flex:1}
+.project-link-preview b,.project-link-preview small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.project-link-preview b{font-size:11px}
+.project-link-preview small{font-size:9px;color:var(--muted);margin-top:2px}
+.project-link-preview i{font-style:normal;color:var(--ac);font-size:13px}
 #pgrid{display:grid;width:100%;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
 #pgrid .card{min-width:0;width:100%;max-width:100%;overflow:hidden}
 #pgrid .media-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px;padding:10px 14px 0;min-width:0}
@@ -314,14 +324,14 @@ function wm(k){var v=SVG[k];return v?'<svg class="wm" viewBox="'+v[0]+'"><path d
 var P=[
 ["","Netless Library","Hardware","Aug 2026 – present","Ultra-low-cost portable offline library. Students read textbooks over local Wi-Fi with no internet.","Wi-Fi hub · offline retrieval",["Guinness record attempt","Patent filing","IBR Achiever"],[["Website","https://netless-library.in"]]],
 ["ieee","HealthBand","Hardware","Sep 2026 – present","Wristband for real-time vital signs and gesture control. Accepted at IEEE SENSORS@25 in Cairo.","ESP32-C3 · MAX30102 · MPU6050",["IEEE SENSORS@25","USD 500 travel grant"],[["Demo post","https://lnkd.in/p/dT8_daWV"]]],
-["play","Neural Volt BMS","AI and software","Mar 2026 – present","AI battery management app for EVs: state of charge, health, remaining life and fault diagnosis.","Bayesian GNN · Android",["Google Play","Patent licensed"],[["Details in CV",CV]]],
+["play","Neural Volt BMS","AI and software","Mar 2026 – present","AI battery management app for EVs: state of charge, health, remaining life and fault diagnosis.","Bayesian GNN · Android",["Google Play","Patent licensed"],[]],
 ["meesho","100 Faces Bot","Hardware","Sep 2026","Robotics product listed on Meesho, one of India’s largest e-commerce platforms.","Embedded C/C++",["Meesho: 3rd among shopping apps in India"],[["Meesho listing","https://meesho.com/100-faces-bot/p/iqhh08?_ms=1.2"]]],
 ["","Mimi companion robot","Hardware","Oct 2026 – present","Desk robot with an animated face, designed and 3D printed in-house.","ESP32-C3 · OLED · CAD",["On sale online"],[["Store","https://mimibuddy.store"]]],
 ["","CubeSat prototype","Hardware","Oct 2026 – present","10 × 10 × 10 cm CubeSat with live telemetry dashboard and orientation monitoring.","ESP32 · IMU · OLED",["Space tech"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7519731026152329216/"]]],
 ["","NOVA-Q","Hardware","Oct 2026 – present","Experimental platform for quantum communication and optical technology.","Embedded electronics · optics",["Quantum"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7518710079827685378/"]]],
 ["msme","Biodegradable AA/AAA battery","Hardware","Jul 2026 – present","Cellulose-gel zinc-carbon cell in a kraft paper case.","Zinc-carbon · MnO2 · cellulose gel",["MSME Stage-I selected","₹15 lakh programme"],[["Demo post","https://lnkd.in/p/djctTKss"]]],
 ["","Hand-wave interactive robot","Hardware","Nov 2026 – present","Human–robot interaction prototype that responds to hand waves with movement and animation.","ESP32-C3 · HC-SR04 · SG90",["Human–robot interaction"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7522679830845267968/"]]],
-["ieee","SWARM-SAR","Research","Oct 2026","Crawl-and-hop micro-robot swarm that locates survivors under rubble.","Swarm robotics",["MOVE-A-THON 2026","IEEE India Council"],[["Details in CV",CV]]]
+["ieee","SWARM-SAR","Research","Oct 2026","Crawl-and-hop micro-robot swarm that locates survivors under rubble.","Swarm robotics",["MOVE-A-THON 2026","IEEE India Council"],[]]
 ];
 /* papers: [brand, conference, place/year, title, link, tag] */
 var PAPERS=[
@@ -460,7 +470,7 @@ fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);
 document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
 document.getElementById('skills').innerHTML=["Graph neural networks","Trustworthy AI","Battery management","Power electronics","Embedded systems","Robotics","LLMs and NLP","TinyML","Smart grids","Python and MATLAB"].map(function(s){return '<span class="tag">'+s+'</span>'}).join('');
 document.getElementById('hl').innerHTML='<span>'+bd('meesho')+'Meesho: ranked 3rd among shopping apps in India</span><span>'+bd('gwr')+'Guinness World Records™ attempt</span><span>'+bd('ieee')+'IEEE Senior Member</span><span>2 Best Paper Awards</span><span>Patent technology licensed to 4 companies</span>';
-var side='<a class="p" href="'+CV+'">Download my CV</a><a href="'+LI+'">'+bd('li')+'LinkedIn</a><a href="'+GS+'">'+bd('scholar')+'Google Scholar</a><a href="https://netless-library.in">Netless Library website</a><a href="https://mimibuddy.store">Mimi robot store</a><a href="mailto:ruksana883@gmail.com">'+bd('gmail')+'ruksana883@gmail.com</a>';
+var side='<a class="p" href="'+LI+'" target="_blank" rel="noopener">'+bd('li')+'LinkedIn</a><a href="'+GS+'">'+bd('scholar')+'Google Scholar</a><a href="https://netless-library.in">Netless Library website</a><a href="https://mimibuddy.store">Mimi robot store</a><a href="mailto:ruksana883@gmail.com">'+bd('gmail')+'ruksana883@gmail.com</a>';
 document.getElementById('side').innerHTML=side;
 document.getElementById('foot').innerHTML='<a class="p" href="mailto:ruksana883@gmail.com">Email me</a><a href="'+LI+'">'+bd('li')+'Connect on LinkedIn</a>';
 var cats=['All'].concat(P.map(function(p){return p[2]}).filter(function(c,i,a){return a.indexOf(c)===i})),cur='All';
@@ -473,18 +483,40 @@ function mediaUploadLink(i){
   var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
   return REPO_UPLOAD+'media/'+slug;
 }
+var MEDIA_TREE_CACHE=null;
 async function listMediaFiles(folder){
-  // List every file in the matching GitHub folder; filenames do not matter.
+  // GitHub Contents API supports arbitrary filenames. If it is rate-limited,
+  // fall back to the repository tree endpoint and filter by the exact folder.
   var api='https://api.github.com/repos/ruksana883-cmd/ruksana883-cmd.github.io/contents/'+folder+'?ref=main';
   try{
-    var response=await fetch(api,{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});
-    if(!response.ok)return [];
-    var items=await response.json();
-    if(!Array.isArray(items))return [];
-    return items.filter(function(item){
-      return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v|pdf)$/i.test(item.name);
+    var response=await fetch(api+'&_='+Date.now(),{cache:'no-store',headers:{'Accept':'application/vnd.github+json'}});
+    if(response.ok){
+      var items=await response.json();
+      if(Array.isArray(items)){
+        return items.filter(function(item){
+          return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v|pdf)$/i.test(item.name);
+        }).sort(function(a,b){
+          var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
+          var bi=/\.(png|jpe?g|gif|webp|avif)$/i.test(b.name)?0:1;
+          return ai-bi || a.name.localeCompare(b.name);
+        });
+      }
+    }
+  }catch(e){}
+  try{
+    if(!MEDIA_TREE_CACHE){
+      var treeResponse=await fetch('https://api.github.com/repos/ruksana883-cmd/ruksana883-cmd.github.io/git/trees/main?recursive=1&_='+Date.now(),{cache:'no-store'});
+      if(!treeResponse.ok) return [];
+      MEDIA_TREE_CACHE=await treeResponse.json();
+    }
+    var prefix=folder.replace(/^\/+|\/+$/g,'')+'/';
+    return (MEDIA_TREE_CACHE.tree||[]).filter(function(item){
+      return item.type==='blob' && item.path.indexOf(prefix)===0 &&
+        /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v|pdf)$/i.test(item.path);
+    }).map(function(item){
+      var name=item.path.split('/').pop();
+      return {type:'file',name:name,path:item.path,download_url:REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/')};
     }).sort(function(a,b){
-      // Prefer images first; then sort by filename for a predictable gallery.
       var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
       var bi=/\.(png|jpe?g|gif|webp|avif)$/i.test(b.name)?0:1;
       return ai-bi || a.name.localeCompare(b.name);
@@ -541,7 +573,7 @@ async function mountProjectMedia(){
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Upload project media <small>Any filename · JPG, PNG, WebP, MP4, WebM or PDF</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Upload project media <small>Any filename · images, videos or PDF · visible after GitHub commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="project-link-previews">'+p[7].map(function(l){var host='';try{host=new URL(l[1]).hostname.replace(/^www\\./,'')}catch(e){}return '<a class="project-link-preview" href="'+l[1]+'" target="_blank" rel="noopener"><span class="project-link-icon">'+(host?'<img loading="lazy" src="https://www.google.com/s2/favicons?domain='+host+'&sz=128" alt="">':'↗')+'</span><span><b>'+l[0]+'</b><small>'+host+'</small></span><i>↗</i></a>'}).join('')+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button></div></div></article>'}).join('');
 mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
@@ -570,6 +602,7 @@ document.addEventListener('click',function(e){
 document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
 draw();
 mountProfilePhoto();
+window.addEventListener('focus',function(){draw();});
 </script>
 </body>
 </html>
