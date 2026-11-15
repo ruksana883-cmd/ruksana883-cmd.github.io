@@ -1,34 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shiek Ruksana Portfolio</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shiek Ruksana – Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#ffffff;--panel:#f7f7f9;--ink:#14171f;--muted:#5d6575;--line:#e5e7ee;--ac:#ee4b2b;--soft:#fff0ec;--dark:#14171f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16.5px/1.6 "Plus Jakarta Sans",system-ui,sans-serif}
+h1,h2,h3{margin:0;line-height:1.15;font-weight:800}
+a{color:var(--ac)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+nav{position:sticky;top:0;z-index:6;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line)}
+nav div{max-width:1140px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 18px;white-space:nowrap}
+nav a{padding:7px 14px;border-radius:99px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14.5px}
+nav a:hover{background:var(--soft);color:var(--ac)}
+.page{max-width:1140px;margin:0 auto;padding:26px 18px 40px;display:grid;grid-template-columns:320px 1fr;gap:34px;align-items:start}
+aside{position:sticky;top:70px;background:var(--dark);color:#fff;border-radius:22px;padding:28px 22px;text-align:center}
+.ph{width:170px;height:170px;margin:0 auto 16px;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#ff9d85,#fff,var(--ac))}
+.ph div{width:100%;height:100%;border-radius:50%;background:#262b38;display:grid;place-items:center;font-size:13px;color:#b9bfce}
+.ph b{display:block;font-size:46px;color:#fff}
+aside h1{font-size:28px}
+aside .role{color:#c8cdda;margin:8px 0 18px;font-size:15px}
+.cl{display:grid;gap:8px;text-align:left}
+.cl a{display:flex;gap:10px;align-items:center;padding:9px 12px;border-radius:12px;background:#222735;color:#fff;text-decoration:none;font-weight:600;font-size:15px}
+.cl a:hover{background:#2f3547}
+.cl a.p{background:var(--ac)}
+.cl .bd{min-width:30px;height:30px;border-radius:8px;font-size:10px;padding:0 5px}
+.cl .bd svg{width:20px}
+.bd{display:inline-grid;place-items:center;flex:none;min-width:46px;height:46px;padding:0 8px;border-radius:12px;font:800 11.5px "Plus Jakarta Sans",sans-serif;color:#fff;letter-spacing:.01em;white-space:nowrap}
+.bd svg{width:30px;height:auto;fill:#fff}
+.bd.w{background:#fff!important;border:1px solid var(--line)}
+.hl{background:var(--ac);color:#fff;border-radius:16px;padding:14px 18px;display:flex;flex-wrap:wrap;gap:10px 24px;font-weight:700;font-size:15px}
+.hl span{display:flex;gap:10px;align-items:center}
+.hl .bd{min-width:36px;height:36px;border-radius:9px;font-size:10px;border:2px solid #fff}
+section{padding:34px 0 8px}
+h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
+.intro{color:var(--muted);margin:6px 0 20px;max-width:640px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:22px 0}
+.stats div{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--panel)}
+.stats b{display:block;font-size:30px;color:var(--ac)}
+.stats span{font-size:14px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:13px;font-weight:600;padding:4px 11px;border-radius:99px;background:var(--soft);color:#b5300f}
+.tag.hot{background:var(--ac);color:#fff}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.filters button{font:600 14.5px "Plus Jakarta Sans",sans-serif;padding:8px 16px;border-radius:99px;border:1.5px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.card{border:1.5px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;background:#fff;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 12px 28px rgba(20,23,31,.12);transform:translateY(-3px)}
+.shot{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:16/10;border:0;padding:0;cursor:pointer;color:#fff;overflow:hidden;font-family:inherit}
+.shot .big{font-size:30px;font-weight:800;letter-spacing:-.01em;text-align:center;padding:0 16px;opacity:.95}
+.shot svg.lg{width:120px;fill:#fff;opacity:.95}
+.shot .pl{position:absolute;right:12px;bottom:12px;width:52px;height:52px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.3);transition:transform .15s}
+.shot:hover .pl{transform:scale(1.1)}
+.shot .pl svg{width:20px;height:20px;margin-left:3px}
+.card .b{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-size:18.5px}
+.when{color:var(--muted);font-size:13.5px}
+.card p{margin:0;font-size:15.5px}
+.stack{font-size:13.5px;color:var(--muted)}
+.lk{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.lk a,.lk button{font:600 14px "Plus Jakarta Sans",sans-serif;padding:8px 14px;border-radius:99px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.lk a:hover{background:var(--ink);color:#fff}
+.lk button{background:var(--ac);border-color:var(--ac);color:#fff}
+.lk button:hover{background:var(--ink);border-color:var(--ink)}
+.pb{position:relative;height:120px;color:#fff;padding:14px 16px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.pb svg.wm{position:absolute;right:-6px;top:6px;width:150px;fill:#fff;opacity:.16}
+.pb .bd{position:absolute;left:14px;top:12px;min-width:40px;height:40px;background:rgba(255,255,255,.18)!important}
+.pb b{font-size:19px;line-height:1.2;position:relative}
+.pb small{opacity:.85;position:relative}
+ul.rows{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.rows li{display:flex;gap:14px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff}
+ul.rows li.star{border-color:var(--ac);background:var(--soft)}
+.tx{flex:1;min-width:0}
+.tx b{display:block;font-weight:700;line-height:1.3}
+.tx small{color:var(--muted);font-size:14px}
+.go{flex:none;font-size:13.5px;font-weight:700;padding:7px 14px;border-radius:99px;background:var(--ink);color:#fff;text-decoration:none;white-space:nowrap}
+.go:hover{background:var(--ac)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px}
+h3.k{font-size:18px;margin:0 0 12px}
+footer{margin-top:30px;background:var(--dark);color:#fff;border-radius:22px;padding:34px 26px}
+footer h2{font-size:30px;margin-bottom:8px}
+footer p{color:#c8cdda;max-width:560px}
+dialog{border:0;border-radius:18px;background:#fff;color:var(--ink);padding:0;width:min(760px,94vw)}
+dialog::backdrop{background:rgba(20,23,31,.75)}
+.vh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-weight:800}
+.vh button{border:0;background:var(--ink);color:#fff;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer}
+.vb{aspect-ratio:16/9;background:#000;display:grid;place-items:center;text-align:center;padding:20px;color:#d5dbe6}
+.vb video{width:100%;height:100%}
+.vf{padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:860px){.page{grid-template-columns:1fr}aside{position:static}}
+@media (max-width:520px){ul.rows li{flex-wrap:wrap}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
-<header>
-  <h1>Shiek Ruksana Portfolio</h1>
-  <p>ML, Robotics, and Power Electronics Projects</p>
-</header>
+<nav aria-label="Sections"><div>
+<a href="#about">About</a><a href="#projects">Projects</a><a href="#research">Research</a><a href="#awards">Awards</a><a href="#funding">Funding</a><a href="#service">Service</a><a href="#press">Press</a><a href="#contact">Contact</a>
+</div></nav>
 
-<section>
-  <h2>Projects</h2>
+<div class="page">
+<aside>
+<div class="ph"><div><span><b>SR</b>Add your photo</span></div></div>
+<h1>Shiek Ruksana</h1>
+<p class="role">Assistant Professor · AI researcher · Hardware innovator<br>Vasavi College of Engineering, Hyderabad</p>
+<div class="cl" id="side"></div>
+</aside>
 
-  <div class="project">
-    <h3>Robot Vision Pipeline</h3>
-    <img src="images/robot.png" alt="Robot Vision">
-    <p>Edge detection, contour detection, and obstacle visualization using OpenCV for robotics.</p>
-    <a href="https://github.com/ruksana883-cmd/robot-vision-pipeline">View Project</a>
-  </div>
+<main>
+<div class="hl" id="hl"></div>
 
-  <div class="project">
-    <h3>GNN-based Three-Phase Matrix Converter</h3>
-    <img src="images/gnn.jpg" alt="GNN Matrix Converter">
-    <p>Graph Neural Network model to predict output voltages and switching behavior of three-phase matrix converters.</p>
-    <a href="https://github.com/ruksana883-cmd/gnn-matrix-converter">View Project</a>
-  </div>
+<section id="about">
+<h2 class="t">About me</h2>
+<p class="intro">I build trustworthy machine learning and low-cost devices for electric vehicles, smart grids and education. My research is on physics-informed, uncertainty-aware graph neural networks. I also turn ideas into products, from an offline digital library to wearables and robots.</p>
+<div class="tags" id="skills"></div>
+<div class="stats"><div><b>11+</b><span>years of experience</span></div><div><b>5</b><span>patent applications</span></div><div><b>14</b><span>conferences reviewed</span></div><div><b>10+</b><span>products built</span></div></div>
 </section>
 
+<section id="projects">
+<h2 class="t">Projects and products</h2>
+<p class="intro">Tap the play button on any card to open its video. Videos and photos are placeholders until you add yours.</p>
+<div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+<div class="grid" id="pgrid"></div>
+</section>
+
+<section id="research">
+<h2 class="t">Research and patents</h2>
+<p class="intro">Each paper card carries its conference branding.</p>
+<div class="grid" id="papers"></div>
+<h3 class="k" style="margin:28px 0 12px">Patent applications</h3>
+<ul class="rows" id="patents"></ul>
+</section>
+
+<section id="awards">
+<h2 class="t">Awards, records and honours</h2>
+<div class="two">
+<div><h3 class="k">Awards</h3><ul class="rows" id="awardsL"></ul></div>
+<div><h3 class="k">Records</h3><ul class="rows" id="recordsL"></ul><h3 class="k" style="margin-top:22px">Admission offers</h3><ul class="rows" id="offersL"></ul></div>
+</div>
+</section>
+
+<section id="funding"><h2 class="t">Funding and grants</h2><ul class="rows" id="fundL"></ul></section>
+
+<section id="service">
+<h2 class="t">Service and leadership</h2>
+<div class="two">
+<div><h3 class="k">Peer review</h3><ul class="rows" id="revL"></ul></div>
+<div><h3 class="k">Leadership</h3><ul class="rows" id="leadL"></ul></div>
+</div>
+</section>
+
+<section id="press"><h2 class="t">Press and features</h2><ul class="rows" id="pressL"></ul></section>
+
+<footer id="contact">
+<h2>Let’s work together</h2>
+<p>Open to research positions, PhD and master’s opportunities, collaborations and industry roles in AI for energy and embedded systems.</p>
+<div class="cl" id="foot" style="max-width:340px;margin-top:16px"></div>
+</footer>
+</main>
+</div>
+
+<dialog id="vd" aria-label="Project video"><div class="vh"><span id="vt"></span><button id="vx" aria-label="Close video">×</button></div><div class="vb" id="vbox"></div><div class="vf" id="vf"></div></dialog>
+
+<script>
+/* To make a video play, add it here by project title, e.g. "Netless Library":"netless.mp4" */
+var VIDEOS={};
+var CV="https://docs.google.com/document/d/1IiXawjTHCTHmcVJmjds8RTNa-lLUxf9C6r7_p4CJz_A/edit",LI="https://www.linkedin.com/in/shiek-ruksana-233b47197/",GS="https://scholar.google.com/citations?user=gkfAmOEAAAAJ&hl=en";
+/* Real vector logos (Simple Icons, CC0): IEEE, Google Scholar, Google Play, Gmail */
+var SVG={
+ieee:['0 8.8 24 6.8','M4.74 14.973h-.05v-.064h.04c.022 0 .051.002.051.03 0 .028-.015.034-.04.034zm.101-.03c0-.06-.04-.079-.109-.079h-.099v.265h.057v-.111h.027l.061.111h.068l-.069-.116c.036-.003.064-.02.064-.07zm-.11.243c-.098 0-.176-.076-.176-.19 0-.113.078-.188.176-.188.095 0 .177.075.177.188 0 .114-.082.19-.177.19zm-.247-.19c0 .156.116.247.247.247.13 0 .247-.09.247-.247a.238.238 0 0 0-.247-.246.239.239 0 0 0-.247.246zM3.35 12.61c-.02.374-.025.72-.052 1.096.148.013.315.026.473.003l-.047-1.046-.009-.05c-.12.005-.234.01-.365-.003zm-.926-1.051c-.182.091-.45.23-.421.48.04.136.187.224.304.28.647.286 1.506.295 2.19.083.168-.065.395-.16.426-.366-.002-.171-.183-.279-.313-.344v-.008a.575.575 0 0 1 .144-.039v-.004c-.228-.041-.45-.101-.671-.16.043.097.073.2.109.301.067-.021.135-.038.207-.047.117.045.284.11.3.256.014.137-.136.204-.23.26-.501.181-1.065.2-1.588.06-.144-.045-.353-.103-.37-.287.102-.242.367-.292.588-.351-.114-.073-.23-.138-.34-.22-.119.007-.227.059-.335.106zm1.107-1.46l-.064.208-.326.932c.082.008.183 0 .263.008v.008l-.048 1.054.008.01c.104.01.234.016.34-.002V12.3l-.042-1.022.006-.035.286-.004a46.727 46.727 0 0 1-.414-1.14zm-.15-.469c.239-.163.453.065.639.195.717.578 1.393 1.238 1.909 1.984.065.096.094.246.036.355-.134.223-.314.426-.485.633v.011c-.426.454-.876.92-1.363 1.305-.237.144-.455.46-.761.264a11.007 11.007 0 0 1-1.927-1.82c-.096-.149-.246-.271-.312-.44-.093-.23.112-.394.229-.566.576-.71 1.291-1.407 2.034-1.92zm.6-.678l-.266-.376c-.032-.02-.073-.052-.108-.062-.079-.034-.163.007-.227.056l-.48.624c-.769.953-1.68 1.843-2.673 2.525-.079.061-.195.121-.22.222-.026.091.022.166.078.223a13.061 13.061 0 0 1 2.234 1.94c.12.127.217.252.335.37.198.265.43.53.613.813.057.06.066.158.156.187.07.024.156.04.223 0l.066-.067a13.269 13.269 0 0 1 3.034-3.06c.117-.103.34-.142.343-.336a.308.308 0 0 0-.137-.226l-.02-.003c-.6-.408-1.159-.87-1.686-1.394l-.582-.609a16.595 16.595 0 0 1-.684-.827zm.039.672c.206.157.42.336.61.518l.034.02a10.122 10.122 0 0 1 1.405 1.592c.065.1.122.212.086.343-.133.332-.403.597-.639.887-.51.55-1.05 1.081-1.652 1.506-.122.086-.287.166-.433.097-.444-.232-.818-.613-1.207-.96-.45-.417-.902-.904-1.244-1.413a.417.417 0 0 1-.064-.253c.044-.176.165-.32.279-.469.403-.514.897-1.002 1.397-1.447.011-.012.032-.036.05-.047.215-.186.428-.35.652-.511.234-.182.529-.031.726.137zm15.942-.197H24v1.028h-2.569v1.094h2.364v1.028H21.43V13.7H24v1.028h-4.038zm-4.859 0h4.037v1.028h-2.57v1.094h2.363v1.028H16.57V13.7h2.569v1.028h-4.037zm-4.86 0h4.037v1.028h-2.57v1.094h2.365v1.028H11.71V13.7h2.57v1.028h-4.038zm-2.24 0h1.469v5.301H8.004Z','#00629B'],
+scholar:['0 0 24 24','M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z','#4285F4'],
+play:['0 0 24 24','M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z','#414141'],
+gmail:['0 0 24 24','M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z','#EA4335']};
+/* Text wordmark badges for brands without a logo file here */
+var TXT={gwr:['GWR','#0b4f9e'],ibr:['IBR','#b71c1c'],abr:['Asia BoR','#6d4c41'],limca:['Limca','#2e7d32'],msme:['MSME','#e65100'],meity:['MeitY','#283593'],neurips:['NeurIPS','#6a3fb5'],isca:['ISCA','#37474f'],laccei:['LACCEI','#00695c'],sae:['SAE','#1c3f94'],brown:['Brown','#4e3629'],jhu:['JHU','#002d72'],bu:['BU','#cc0000'],drexel:['Drexel','#07294d'],nu:['NU','#d41b2c'],nyu:['NYU','#57068c'],meesho:['meesho','#9f2089'],li:['in','#0a66c2'],vasavi:['VCE','#7a1f2b'],jps:['i-manager','#37474f']};
+function bd(k,cls){if(!k)return '';var s=SVG[k];if(s&&k!=='ieee'&&k!=='play'&&k!=='gmail'&&k!=='scholar')s=0;
+if(SVG[k]){var v=SVG[k];if(k==='scholar'||k==='gmail')return '<span class="bd w'+(cls||'')+'"><svg viewBox="'+v[0]+'" style="fill:'+v[2]+'"><path d="'+v[1]+'"/></svg></span>';return '<span class="bd" style="background:'+v[2]+'"><svg viewBox="'+v[0]+'"><path d="'+v[1]+'"/></svg></span>'}
+var t=TXT[k];if(!t)return '';if(DOM[k])return '<span class="bd w"><img src="https://www.google.com/s2/favicons?domain='+DOM[k]+'&sz=128" data-k="'+k+'" alt="'+t[0]+' logo" onerror="fb(this)" style="width:30px;height:30px"></span>';return tb(k)}
+function tb(k){var t=TXT[k];return '<span class="bd" style="background:'+t[1]+'">'+t[0]+'</span>'}
+function fb(i){i.parentNode.outerHTML=tb(i.getAttribute('data-k'))}
+/* Logo links: each brand's own website domain. When the page is hosted where images may load (GitHub Pages), the logo shows; otherwise the colored badge shows. Change a domain to change its logo. */
+var DOM={gwr:'guinnessworldrecords.com',ibr:'indiabookofrecords.in',abr:'asiabookofrecords.com',msme:'msme.gov.in',meity:'meity.gov.in',neurips:'neurips.cc',isca:'isca-speech.org',laccei:'laccei.org',sae:'sae.org',brown:'brown.edu',jhu:'jhu.edu',bu:'bu.edu',drexel:'drexel.edu',nu:'northeastern.edu',nyu:'nyu.edu',meesho:'meesho.com',li:'linkedin.com',vasavi:'vasavi.ac.in',jps:'imanagerpublications.com'};
+var BG={ieee:'linear-gradient(135deg,#00629B,#003a5c)',sae:'linear-gradient(135deg,#1c3f94,#0f244f)',neurips:'linear-gradient(135deg,#6a3fb5,#37206b)',jps:'linear-gradient(135deg,#455a64,#1f2a30)',play:'linear-gradient(135deg,#414141,#161616)',meesho:'linear-gradient(135deg,#9f2089,#5c1250)',msme:'linear-gradient(135deg,#e65100,#a33a00)'};
+var DEF='linear-gradient(135deg,#2b3142,#14171f)';
+function wm(k){var v=SVG[k];return v?'<svg class="wm" viewBox="'+v[0]+'"><path d="'+v[1]+'"/></svg>':''}
+
+/* [brand, title, category, date, description, stack, tags, links] */
+var P=[
+["","Netless Library","Hardware","Aug 2026 – present","Ultra-low-cost portable offline library. Students read textbooks over local Wi-Fi with no internet.","Wi-Fi hub · offline retrieval",["Guinness record attempt","Patent filing","IBR Achiever"],[["Website","https://netless-library.in"]]],
+["ieee","HealthBand","Hardware","Sep 2026 – present","Wristband for real-time vital signs and gesture control. Accepted at IEEE SENSORS@25 in Cairo.","ESP32-C3 · MAX30102 · MPU6050",["IEEE SENSORS@25","USD 500 travel grant"],[["Demo post","https://lnkd.in/p/dT8_daWV"]]],
+["play","Neural Volt BMS","AI and software","Mar 2026 – present","AI battery management app for EVs: state of charge, health, remaining life and fault diagnosis.","Bayesian GNN · Android",["Google Play","Patent licensed"],[["Details in CV",CV]]],
+["meesho","100 Faces Bot","Hardware","Sep 2026","Robotics product listed on Meesho, one of India’s largest e-commerce platforms.","Embedded C/C++",["Meesho: 3rd among shopping apps in India"],[["Meesho listing","https://meesho.com/100-faces-bot/p/iqhh08?_ms=1.2"]]],
+["","Mimi companion robot","Hardware","Oct 2026 – present","Desk robot with an animated face, designed and 3D printed in-house.","ESP32-C3 · OLED · CAD",["On sale online"],[["Store","https://mimibuddy.store"]]],
+["","CubeSat prototype","Hardware","Oct 2026 – present","10 × 10 × 10 cm CubeSat with live telemetry dashboard and orientation monitoring.","ESP32 · IMU · OLED",["Space tech"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7519731026152329216/"]]],
+["","NOVA-Q","Hardware","Oct 2026 – present","Experimental platform for quantum communication and optical technology.","Embedded electronics · optics",["Quantum"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7518710079827685378/"]]],
+["msme","Biodegradable AA/AAA battery","Hardware","Jul 2026 – present","Cellulose-gel zinc-carbon cell in a kraft paper case.","Zinc-carbon · MnO2 · cellulose gel",["MSME Stage-I selected","₹15 lakh programme"],[["Demo post","https://lnkd.in/p/djctTKss"]]],
+["","Hand-wave interactive robot","Hardware","Nov 2026 – present","Human–robot interaction prototype that responds to hand waves with movement and animation.","ESP32-C3 · HC-SR04 · SG90",["Human–robot interaction"],[["Demo post","https://www.linkedin.com/feed/update/urn:li:activity:7522679830845267968/"]]],
+["ieee","SWARM-SAR","Research","Oct 2026","Crawl-and-hop micro-robot swarm that locates survivors under rubble.","Swarm robotics",["MOVE-A-THON 2026","IEEE India Council"],[["Details in CV",CV]]]
+];
+/* papers: [brand, conference, place/year, title, link, tag] */
+var PAPERS=[
+["sae","SAE WCX World Congress 2026","Michigan, USA · Poster","Bayesian GNN with Lyapunov stability for EV battery remaining useful life",GS,""],
+["ieee","IEEE ESCI 2026","Best Paper Award · Mar 2026","Optimizing LLM prompt engineering with DSPy-based declarative learning","https://ieeexplore.ieee.org/document/11493364","Best Paper"],
+["ieee","IEEE ICoECIT 2026","Jan 2026","Unmasking hallucinations: a causal graph-attention perspective","https://ieeexplore.ieee.org/document/11496690",""],
+["ieee","IEEE ICoECIT 2026","Jan 2026","AI-driven BMS architecture for EVs using LSM-based SOC estimation","https://ieeexplore.ieee.org/document/11496955",""],
+["ieee","IEEE SENSORS@25","Cairo, Egypt · Dec 2026","HealthBand: embedded multisensor wearable for physiological monitoring",GS,"Travel grant"],
+["neurips","NeurIPS 2026","Submission in progress","Critical spectral control for stabilizing deep graph neural networks",GS,""],
+["jps","Journal of Power Systems","i-manager · 2025","GNN prediction of single-phase matrix converter output","https://doi.org/10.26634/jps.13.2.22341",""]
+];
+/* rows: [brand, title, subtitle, link, star] ; empty link falls back to the CV */
+var PAT=[["","Embedded BMS with Bayesian GNN and Lyapunov stability for battery RUL","No. 202641020573 · licensed to 3 companies",""],["","Bayesian–Markov reliability framework for EV over-the-air updates","No. 202641052714",""],["","Lyapunov-stable Bayesian trust propagation GNN","No. 202641068874 · licensed to 1 company",""],["","Cellulose-based biodegradable AA/AAA battery","Filing in process, Sep 2026",""],["","Portable offline wireless educational resource access","Filing in process, Aug 2026",""]];
+var AW=[["ieee","IEEE Sensors Council Travel Grant (USD 500)","SENSORS@25, Cairo · Dec 2026",LI,1],["ieee","Best Paper Award, IEEE ESCI 2026","Mar 2026","https://ieeexplore.ieee.org/document/11493364",1],["ieee","IEEE Senior Member","Top ~10% of members · 2026",LI,1],["","Best Paper Award, ICPCIEE","Dec 2024","",1],["vasavi","Gold Medal and Roll of Honour, M.E.","Vasavi College of Engineering · 2018",""],["","College topper, B.Tech","Institute rank 1 of 720 students",""]];
+var REC=[["gwr","Guinness World Records™ attempt: Largest Electrical Engineering Lesson","Ref. SF-401037-202607201507 · ongoing",""],["gwr","Guinness World Records™ attempt: Smallest Portable Offline Digital Library Device","Netless Library · Oct 2026","https://netless-library.in"],["ibr","India Book of Records Achiever 2028","“Pocket University” · confirmed 31 Aug 2026",""],["abr","Asia Book of Records application","Offline Wi-Fi digital library hub · ID 15658",""],["limca","Limca Book of Records proposal","Smallest portable digital library",""]];
+var OFF=[["brown","Brown University, Sc.M. Computer Science","Fall 2026",""],["jhu","Johns Hopkins University, MSE ECE","2025",""],["bu","Boston University, M.S. ECE","Dean’s Graduate Scholarship, 45% tuition",""],["drexel","Drexel University","Dean’s Fellowship, $16,000",""],["nu","Northeastern, NJIT, NYU","Scholarships offered",""]];
+var FUND=[["msme","MSME IDEA Hackathon 6.0, Stage I selected","Biodegradable battery · ₹15 lakh · Jul 2026","https://lnkd.in/p/djctTKss"],["msme","MSME IDEA Hackathon 6.0, proposal","AI battery management system",""],["msme","MSME Hackathons 3.0 and 4.0, Stage I","SiC EV on-board charger · 2023, 2024",""],["meity","GENESIS EIR Cohort-3, MeitY Startup Hub","Applicant · up to ₹10 lakh",""],["ieee","MOVE-A-THON 2026, IEEE India","SWARM-SAR · up to ₹1 lakh applied",""],["","Speedrun Accelerator","NeuralVolt · May 2026",""]];
+var REV=[["neurips","NeurIPS 2026","Datasets track, ethics review, AI4MetaScience workshop",""],["isca","INTERSPEECH 2026 · IEEE SLT 2026","Invited reviewer",""],["ieee","IEEE ECCE 2026","Invited reviewer",""],["ieee","IEEE SysCon 2026, Halifax","Technical Program Committee",""],["laccei","LACCEI 2026 · TEMSMET 2026","International reviewer",""]];
+var LEAD=[["ieee","Faculty Advisor, IEEE PELS Student Chapter","Vasavi College · Aug 2026 – present",""],["ieee","Evaluator, Tech for Tomorrow Hackathon","IEEE Computer Society",""],["","Chair, ACUMEN 2025 and 2026","Technical fest · sponsorship and budget",""],["","Professional body in-charge","IEEE, IEI, ISTE, IETE, CSI · 300+ students",""],["","Founder, department library","500+ books · usage up 30%",""]];
+var PRESS=[["ieee","IEEE Women in Engineering: “Ruksana’s Journey: From Gold Medalist to a Wider Engineering World”","Nov 2026","https://wie.ieee.org/ruksanas-journey-from-gold-medalist-to-a-wider-engineering-world/"],["ieee","IEEE Potentials: invited feature on a low-cost offline digital library","Nov/Dec 2026",""],["ieee","IEEE Spectrum, Hands On column: editorial consideration","2026",""],["","Capital Information, Sakshi, Mudra, Disha: Best Paper Award","Mar 2026","http://capitalinformation.net/view/745/14-march-2026/4"],["","Capital Information, Sakshi, Mudra and others: IEEE Senior Member","Apr–May 2026","https://www.capitalinformation.net/view/827/26-april-2026/2"]];
+function row(a){var u=a[3];return '<li'+(a[4]===1?' class="star"':'')+'>'+bd(a[0])+'<span class="tx"><b>'+a[1]+'</b><small>'+a[2]+'</small></span><a class="go" href="'+(u||CV)+'">'+(u?'Open':'In CV')+'</a></li>'}
+function fill(id,arr){document.getElementById(id).innerHTML=arr.map(row).join('')}
+fill('patents',PAT);fill('awardsL',AW);fill('recordsL',REC);fill('offersL',OFF);fill('fundL',FUND);fill('revL',REV);fill('leadL',LEAD);fill('pressL',PRESS);
+document.getElementById('papers').innerHTML=PAPERS.map(function(p){return '<article class="card"><div class="pb" style="background:'+(BG[p[0]]||DEF)+'">'+wm(p[0])+bd(p[0])+'<b>'+p[1]+'</b><small>'+p[2]+'</small></div><div class="b">'+(p[5]?'<div class="tags"><span class="tag hot">'+p[5]+'</span></div>':'')+'<h3 style="font-size:16.5px">'+p[3]+'</h3><div class="lk"><a href="'+p[4]+'">'+(p[4]===GS?'Google Scholar':'Open paper')+'</a></div></div></article>'}).join('');
+document.getElementById('skills').innerHTML=["Graph neural networks","Trustworthy AI","Battery management","Power electronics","Embedded systems","Robotics","LLMs and NLP","TinyML","Smart grids","Python and MATLAB"].map(function(s){return '<span class="tag">'+s+'</span>'}).join('');
+document.getElementById('hl').innerHTML='<span>'+bd('meesho')+'Meesho: ranked 3rd among shopping apps in India</span><span>'+bd('gwr')+'Guinness World Records™ attempt</span><span>'+bd('ieee')+'IEEE Senior Member</span><span>2 Best Paper Awards</span><span>Patent technology licensed to 4 companies</span>';
+var side='<a class="p" href="'+CV+'">Download my CV</a><a href="'+LI+'">'+bd('li')+'LinkedIn</a><a href="'+GS+'">'+bd('scholar')+'Google Scholar</a><a href="https://netless-library.in">Netless Library website</a><a href="https://mimibuddy.store">Mimi robot store</a><a href="mailto:ruksana883@gmail.com">'+bd('gmail')+'ruksana883@gmail.com</a>';
+document.getElementById('side').innerHTML=side;
+document.getElementById('foot').innerHTML='<a class="p" href="mailto:ruksana883@gmail.com">Email me</a><a href="'+LI+'">'+bd('li')+'Connect on LinkedIn</a>';
+var cats=['All'].concat(P.map(function(p){return p[2]}).filter(function(c,i,a){return a.indexOf(c)===i})),cur='All';
+var PLAY='<svg viewBox="0 0 24 24" fill="#14171f"><path d="M6 3l15 9-15 9z"/></svg>';
+function art(p){var k=p[0],v=SVG[k];if(v)return '<svg class="lg" viewBox="'+v[0]+'"><path d="'+v[1]+'"/></svg>';return '<span class="big">'+(TXT[k]?TXT[k][0]:p[1])+'</span>'}
+function draw(){
+document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
+document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
+return '<article class="card"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+}
+var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
+function openV(i){var p=P[i],src=VIDEOS[p[1]];document.getElementById('vt').textContent=p[1];
+vb.innerHTML=src?'<video controls autoplay playsinline src="'+src+'"></video>':'<div>Video coming soon.<br>Watch the demo using the link below.</div>';
+document.getElementById('vf').innerHTML=p[7].map(function(l){return '<a class="go" href="'+l[1]+'">'+l[0]+'</a>'}).join('');
+vd.showModal()}
+function closeV(){vb.innerHTML='';vd.close()}
+document.addEventListener('click',function(e){var c=e.target.closest('[data-c]'),v=e.target.closest('[data-v]');if(c){cur=c.getAttribute('data-c');draw()}else if(v){openV(+v.getAttribute('data-v'))}else if(e.target===vd){closeV()}});
+document.getElementById('vx').onclick=closeV;vd.addEventListener('cancel',function(){vb.innerHTML=''});
+draw();
+</script>
 </body>
 </html>
