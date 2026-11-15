@@ -104,6 +104,10 @@ h2.t{font-size:clamp(26px,4vw,34px);margin-bottom:6px}
 #pgrid .media-gallery:empty{display:none}
 #pgrid .media-gallery .media-thumb{position:relative;display:block;width:100%;min-width:0;aspect-ratio:4/3;padding:0;border:0;border-radius:10px;overflow:hidden;background:#e8f3f0;cursor:pointer}
 #pgrid .media-gallery .media-thumb img,#pgrid .media-gallery .media-thumb video{display:block;width:100%;height:100%;max-height:none;object-fit:cover;border-radius:0;pointer-events:none}
+.file-thumb-pdf{display:flex;width:100%;height:100%;min-height:70px;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#eef4f2;color:#176b67;padding:6px}
+.file-thumb-pdf b{font-size:18px;letter-spacing:.08em}
+.file-thumb-pdf small{font-size:9px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.media-upload[hidden]{display:none!important}
 #pgrid .media-gallery .media-thumb:after{content:'▶';position:absolute;right:7px;bottom:7px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:rgba(12,31,38,.82);color:#fff;font-size:11px;pointer-events:none}
 #profileFrame{width:170px;height:170px;overflow:hidden;border-radius:50%;padding:6px;background:conic-gradient(var(--ac),#C9B27C,#F7F4EA,var(--ac))}
 #profileFrame>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;border:5px solid var(--dark);background:#fff}
@@ -478,7 +482,7 @@ async function listMediaFiles(folder){
     var items=await response.json();
     if(!Array.isArray(items))return [];
     return items.filter(function(item){
-      return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v)$/i.test(item.name);
+      return item.type==='file' && /\.(png|jpe?g|gif|webp|avif|mp4|webm|mov|m4v|pdf)$/i.test(item.name);
     }).sort(function(a,b){
       // Prefer images first; then sort by filename for a predictable gallery.
       var ai=/\.(png|jpe?g|gif|webp|avif)$/i.test(a.name)?0:1;
@@ -491,10 +495,13 @@ function mediaMarkup(item){
   var url=item.download_url || (REPO_RAW+item.path.split('/').map(encodeURIComponent).join('/'));
   var safeUrl=url.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
   var isVideo=/\.(mp4|webm|mov|m4v)$/i.test(item.name);
+  var isPdf=/\.pdf$/i.test(item.name);
   var preview=isVideo
     ? '<video muted playsinline preload="metadata" tabindex="-1" src="'+safeUrl+'#t=0.2"></video>'
-    : '<img loading="lazy" src="'+safeUrl+'" alt="Project photo">';
-  return '<button class="media-thumb" type="button" data-media-url="'+safeUrl+'" data-media-type="'+(isVideo?'video':'image')+'" aria-label="Open '+(isVideo?'video':'photo')+' preview">'+preview+'</button>';
+    : isPdf
+      ? '<span class="file-thumb-pdf"><b>PDF</b><small>'+item.name.replace(/</g,'&lt;')+'</small></span>'
+      : '<img loading="lazy" src="'+safeUrl+'" alt="'+item.name.replace(/"/g,'&quot;')+'">';
+  return '<button class="media-thumb" type="button" data-media-url="'+safeUrl+'" data-media-type="'+(isVideo?'video':(isPdf?'pdf':'image'))+'" data-media-name="'+item.name.replace(/"/g,'&quot;')+'" aria-label="Open '+item.name.replace(/"/g,'&quot;')+'">'+preview+'</button>';
 }
 async function mountProfilePhoto(){
   var files=await listMediaFiles('media/profile');
@@ -511,21 +518,30 @@ async function mountProfilePhoto(){
 }
 async function mountProjectMedia(){
   var cards=document.querySelectorAll('[data-project-media]');
-  for(var card of cards){
+  await Promise.all(Array.from(cards).map(async function(card){
     var i=Number(card.getAttribute('data-project-media'));
     var slug=MEDIA_SLUGS[i]||('project-'+(i+1));
     var gallery=card.querySelector('.media-gallery');
-    var files=await listMediaFiles('media/'+slug);
-    if(files.length){
-      gallery.innerHTML=files.map(mediaMarkup).join('');
-      var upload=card.querySelector('.media-upload');if(upload)upload.remove();
+    var upload=card.querySelector('.media-upload');
+    if(!gallery) return;
+    try{
+      var files=await listMediaFiles('media/'+slug);
+      if(files.length){
+        gallery.innerHTML=files.map(mediaMarkup).join('');
+        if(upload) upload.remove();
+      } else {
+        gallery.innerHTML='';
+        if(upload) upload.hidden=false;
+      }
+    }catch(error){
+      if(upload) upload.hidden=false;
     }
-  }
+  }));
 }
 function draw(){
 document.getElementById('filters').innerHTML=cats.map(function(c){return '<button aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join('');
 document.getElementById('pgrid').innerHTML=P.map(function(p,i){return {p:p,i:i}}).filter(function(o){return cur==='All'||o.p[2]===cur}).map(function(o){var p=o.p;
-return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Add project photos / video <small>Opens secure GitHub upload · public after commit</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
+return '<article class="card" data-project-media="'+o.i+'"><button class="shot" data-v="'+o.i+'" aria-label="Play video: '+p[1]+'" style="background:'+(BG[p[0]]||DEF)+'">'+art(p)+'<span class="pl">'+PLAY+'</span></button><div class="media-gallery" aria-live="polite"></div><a class="media-upload" href="'+mediaUploadLink(o.i)+'" target="_blank" rel="noopener">＋ Upload project media <small>Any filename · JPG, PNG, WebP, MP4, WebM or PDF</small></a><div class="b"><div class="tags">'+p[6].map(function(t){return '<span class="tag'+(/Meesho|Guinness|Best/.test(t)?' hot':'')+'">'+t+'</span>'}).join('')+'</div><h3>'+p[1]+'</h3><div class="when">'+p[2]+' · '+p[3]+'</div><p>'+p[4]+'</p><div class="stack">'+p[5]+'</div><div class="lk"><button data-v="'+o.i+'">Play video</button>'+p[7].map(function(l){return '<a href="'+l[1]+'">'+l[0]+'</a>'}).join('')+'</div></div></article>'}).join('');
 mountProjectMedia();
 }
 var vd=document.getElementById('vd'),vb=document.getElementById('vbox');
@@ -537,7 +553,9 @@ function openProjectMedia(url,type,title){
   document.getElementById('vt').textContent=title||'Project media';
   vb.innerHTML=type==='video'
     ? '<video controls autoplay playsinline src="'+url+'"></video>'
-    : '<img alt="Project media preview" style="display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain" src="'+url+'">';
+    : type==='pdf'
+      ? '<iframe title="Project PDF preview" src="'+url+'" style="width:100%;height:75vh;border:0;background:#fff"></iframe>'
+      : '<img alt="Project media preview" style="display:block;max-width:100%;max-height:75vh;margin:auto;object-fit:contain" src="'+url+'">';
   document.getElementById('vf').innerHTML='';
   vd.showModal();
 }
